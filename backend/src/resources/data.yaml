@@ -1,0 +1,39 @@
+categories:
+  - name: Frontend
+    technologies:
+      - name: HTML
+        description: Hypertext Markup Language
+        link: https://developer.mozilla.org/en-US/docs/Web/HTML
+      - name: CSS
+        description: Cascading Style Sheets
+        link: https://developer.mozilla.org/en-US/docs/Web/CSS
+      - name: JavaScript
+        description: JavaScript Programming Language
+        link: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+
+  - name: Backend
+    technologies:
+      - name: Java
+        description: Java Programming Language
+        link: https://www.java.com/
+      - name: Spring Boot
+        description: Spring Boot Framework
+        link: https://spring.io/projects/spring-boot
+      - name: Node.js
+        description: Node.js JavaScript Runtime
+        link: https://nodejs.org/
+
+roles:
+  - name: Software Engineer
+    description: Develops software applications
+    technologies:
+      - Java
+      - Spring Boot
+      - JavaScript
+
+  - name: DevOps Engineer
+    description: Manages deployment and operations
+    technologies:
+      - Docker
+      - Kubernetes
+      - Jenkins
