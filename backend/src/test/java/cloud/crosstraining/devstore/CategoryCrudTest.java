@@ -28,6 +28,7 @@ class CategoryCrudTest {
 		// create
 		Category category = new Category(null,"laptops","laptops","Portable computers suitable for various tasks");
 		when(categoryRepository.save(any())).thenReturn(category);
+		category.setId(1L);
 		Category savedCategory = service.create(category);
 
 		// find

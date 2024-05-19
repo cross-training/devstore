@@ -3,6 +3,8 @@ package cloud.crosstraining.devstore.application.service;
 import cloud.crosstraining.devstore.domain.Entity;
 import cloud.crosstraining.devstore.application.port.out.Repository;
 import cloud.crosstraining.devstore.application.port.in.Service;
+import cloud.crosstraining.devstore.domain.FindAllArgs;
+import cloud.crosstraining.devstore.domain.FindArgs;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.reflect.Field;
@@ -18,13 +20,13 @@ public abstract class ServiceImpl<ENTITY extends Entity<ID>,ID> implements Servi
     }
 
     @Override
-    public List<ENTITY> getAll() {
-        return repository.findAll();
+    public ENTITY getById(ID id) {
+        return repository.findById(id);
     }
 
     @Override
-    public ENTITY getById(ID id) {
-        return repository.findById(id);
+    public List<ENTITY> getAll(FindAllArgs args) {
+        return repository.findAll(args);
     }
 
     @Override

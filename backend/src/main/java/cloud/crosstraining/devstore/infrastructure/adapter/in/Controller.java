@@ -2,9 +2,9 @@ package cloud.crosstraining.devstore.infrastructure.adapter.in;
 
 import cloud.crosstraining.devstore.application.port.in.Service;
 import cloud.crosstraining.devstore.domain.Entity;
+import cloud.crosstraining.devstore.domain.FindAllArgs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Map;
 
@@ -19,8 +19,9 @@ public abstract class Controller<ENTITY extends  Entity<ID>,ID> {
     }
 
     @GetMapping
-    public List<ENTITY> getAll() {
-        return service.getAll();
+    public List<ENTITY> getAll(String filters, String includes,Integer page, Integer size,String sort, Boolean desc) {
+        FindAllArgs args = new FindAllArgs(filters,includes,page,size,sort,desc);
+        return service.getAll(args);
     }
 
     @GetMapping("/{id}")
