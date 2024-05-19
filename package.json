@@ -1,0 +1,10 @@
+{
+  "name": "devstore",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "exit 0"
+  },
+  "author": "Create a website or app that works as a place to find those products that you think every developer should know about",
+  "license": "ISC"
+}
