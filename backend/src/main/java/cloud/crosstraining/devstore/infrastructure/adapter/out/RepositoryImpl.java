@@ -27,7 +27,7 @@ public abstract class RepositoryImpl<ENTITY extends Entity<ID>, ID, JAP_ENTITY> 
 
     @Override
     public ENTITY findById(ID id) {
-        return jpaRepository.findById(id).map(this::toDomain).orElse(null);
+         return jpaRepository.findById(id).map(this::toDomain).orElse(null);
     }
 
     @Override
@@ -37,7 +37,7 @@ public abstract class RepositoryImpl<ENTITY extends Entity<ID>, ID, JAP_ENTITY> 
 
     @Override
     public void deleteById(ID id) {
-        jpaRepository.deleteById(id);
+         jpaRepository.deleteById(id);
     }
 
     protected abstract ENTITY toDomain(JAP_ENTITY japEntity);

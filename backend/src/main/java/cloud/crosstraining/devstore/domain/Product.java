@@ -1,5 +1,6 @@
 package cloud.crosstraining.devstore.domain;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import java.util.List;
@@ -7,7 +8,8 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Product implements  Entity<Long>  {
+@EqualsAndHashCode(callSuper=false)
+public class Product extends EntityBase implements Entity<Long>  {
     private Long id;
     private String code;
     private String name;

@@ -6,8 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
-
+@RequestMapping
 public abstract class Controller<ENTITY extends  Entity<ID>,ID> {
 
     private final Service<ENTITY,ID> service;
@@ -28,13 +29,18 @@ public abstract class Controller<ENTITY extends  Entity<ID>,ID> {
     }
 
     @PostMapping
-    public ENTITY create(@RequestBody ENTITY product) {
-        return service.create(product);
+    public ENTITY create(@RequestBody ENTITY entity) {
+        return service.create(entity);
     }
 
     @PutMapping("/{id}")
-    public ENTITY update(@PathVariable ID id, @RequestBody ENTITY product) {
-        return service.update(id, product);
+    public ENTITY update(@PathVariable ID id, @RequestBody ENTITY entity) {
+        return service.update(id, entity);
+    }
+
+    @PatchMapping("/{id}")
+    public ENTITY updatePartially(@PathVariable ID id, @RequestBody Map<String, Object> updates) {
+        return service.updatePartially(id, updates);
     }
 
     @DeleteMapping("/{id}")

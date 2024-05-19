@@ -20,7 +20,7 @@ public class ProductRepositoryImpl extends RepositoryImpl<Product,Long,ProductEn
 
     @Override
     protected Product toDomain(ProductEntity entity) {
-        return new Product(entity.getId(), entity.getCode(), entity.getName(), entity.getPrice(), entity.getDescription(), entity.getCategories(), entity.getUrl());
+        return new Product(entity.getId(),entity.getCode(), entity.getName(), entity.getPrice(), entity.getDescription(), entity.getCategories(), entity.getUrl());
     }
 
     @Override

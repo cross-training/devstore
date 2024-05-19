@@ -2,6 +2,7 @@ package cloud.crosstraining.devstore.infrastructure.adapter.out;
 
 import cloud.crosstraining.devstore.application.port.out.CategoryRepository;
 import cloud.crosstraining.devstore.domain.Category;
+import cloud.crosstraining.devstore.domain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -17,12 +18,12 @@ public class CategoryRepositoryImpl extends RepositoryImpl<Category,Long,Categor
     }
 
     @Override
-    protected Category toDomain(CategoryEntity categoryEntity) {
-        return null;
+    protected Category toDomain(CategoryEntity entity) {
+        return  new Category(entity.getId(),entity.getCode(), entity.getName(), entity.getDescription());
     }
 
     @Override
     protected CategoryEntity toEntity(Category entity) {
-        return null;
+        return new CategoryEntity(entity.getId(), entity.getCode(), entity.getName(), entity.getDescription());
     }
 }
