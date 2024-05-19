@@ -1,6 +1,6 @@
-package cloud.crosstraining.devstore.infrastructure.adapter.Rest;
-import cloud.crosstraining.devstore.application.*;
-import cloud.crosstraining.devstore.application.service.HealthService;
+package cloud.crosstraining.devstore.infrastructure.adapter.in;
+
+import cloud.crosstraining.devstore.application.port.in.HealthService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class HealthController {
 
-     private final HealthService service;
+    private final HealthService service;
 
     public HealthController(HealthService service) {
         this.service = service;
@@ -19,5 +19,4 @@ public class HealthController {
     public String health() {
         return service.health();
     }
-    
 }

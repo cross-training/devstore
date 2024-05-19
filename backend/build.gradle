@@ -1,60 +1,48 @@
 plugins {
-    id 'org.springframework.boot' version '2.6.4'
-    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-    id 'java'
-    id 'application'
+	id 'org.springframework.boot' version '2.6.4'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id 'application'
 }
 
 application {
-    mainClass = 'cloud.crosstraining.devstore.Main'
+	mainClass = 'cloud.crosstraining.devstore.Main'
 }
 
-group 'cloud.crosstraining.devstore'
-version '0.1.0'
-
-repositories {
-    mavenCentral()
-}
+group = 'cloud.crosstraining'
+version = '0.0.1-SNAPSHOT'
 
 java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
-    }
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter'
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-autoconfigure'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
-    implementation 'org.springframework.boot:spring-boot-starter-web:2.6.4'
-    implementation 'org.springframework.boot:spring-boot-starter-actuator:2.6.4'
-    implementation 'org.yaml:snakeyaml:1.29'
-    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.5'
-    implementation 'org.projectlombok:lombok:1.18.22'
-    implementation 'io.springfox:springfox-boot-starter:3.0.0'
-    implementation 'com.h2database:h2'
-    annotationProcessor 'org.projectlombok:lombok:1.18.22'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.6.4'    
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+	runtimeOnly 'com.h2database:h2'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
-
-// buildCache {
-//     local {
-//         enabled = true
-//     }
-//     remote(HttpBuildCache) {
-//        url = uri('http://tu-servidor-de-cache-de-compilacion')
-//     }
-// }
 
 tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
+	options.encoding = 'UTF-8'
 }
-
 tasks.withType(Test) {
-    useJUnitPlatform()
+	useJUnitPlatform()
 }
