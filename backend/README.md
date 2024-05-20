@@ -9,7 +9,6 @@
 
 - [start](https://start.spring.io/#!type=gradle-project&language=java&platformVersion=3.2.5&packaging=jar&jvmVersion=17&groupId=cloud.crosstraining&artifactId=devstore&name=devstore&description=Demo%20project%20for%20Spring%20Boot&packageName=cloud.crosstraining.devstore&dependencies=data-jpa,actuator,lombok,data-rest)
 
-
 ## Gradle
 
 initialize:

@@ -21,6 +21,7 @@ public class ProductEntity  {
     private String name;
     private Double price;
     private String description;
+    private Double review;
     @ManyToMany
     @JoinTable(
             name = "ProductCategory",
@@ -29,4 +30,5 @@ public class ProductEntity  {
     )
     private Set<CategoryEntity> categories = new HashSet<>();
     private String url;
+    private String imageUrl;
 }
