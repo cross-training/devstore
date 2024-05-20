@@ -5,7 +5,8 @@
         "gradlew",
         "hostinger",
         "javac",
-        "jupiter"
+        "jupiter",
+        "prometheus"
     ],
     "java.configuration.updateBuildConfiguration": "disabled"
 }

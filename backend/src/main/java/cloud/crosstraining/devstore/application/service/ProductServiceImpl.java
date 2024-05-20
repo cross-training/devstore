@@ -9,11 +9,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProductServiceImpl extends ServiceImpl<Product,Long> implements ProductService {
 
-    private final ProductRepository productRepository;
-
     @Autowired
     public ProductServiceImpl(ProductRepository productRepository) {
         super(productRepository);
-        this.productRepository = productRepository;
     }
 }

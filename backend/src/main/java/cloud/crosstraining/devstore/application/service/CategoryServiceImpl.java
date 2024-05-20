@@ -9,11 +9,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class CategoryServiceImpl extends ServiceImpl<Category,Long> implements CategoryService {
 
-    private final CategoryRepository categoryRepository;
-
     @Autowired
     public CategoryServiceImpl(CategoryRepository categoryRepository) {
         super(categoryRepository);
-        this.categoryRepository = categoryRepository;
     }
 }
