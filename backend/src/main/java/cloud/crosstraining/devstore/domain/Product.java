@@ -17,4 +17,6 @@ public class Product extends EntityBase implements Entity<Long>  {
     private String description;
     private List<String> categories;
     private String url;
+    private Double reviews;
+    private String imageUrl;
 }
