@@ -1,5 +1,4 @@
 package cloud.crosstraining.devstore;
-import cloud.crosstraining.devstore.application.port.in.CategoryService;
 import cloud.crosstraining.devstore.application.port.out.CategoryRepository;
 import cloud.crosstraining.devstore.application.service.CategoryServiceImpl;
 import cloud.crosstraining.devstore.domain.Category;
