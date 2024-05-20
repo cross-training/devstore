@@ -2,7 +2,6 @@ package cloud.crosstraining.devstore.infrastructure.adapter.out;
 
 import cloud.crosstraining.devstore.domain.Entity;
 import cloud.crosstraining.devstore.domain.FindAllArgs;
-import cloud.crosstraining.devstore.domain.FindArgs;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,15 +9,17 @@ import cloud.crosstraining.devstore.application.port.out.Repository;
 
 import javax.persistence.EntityManagerFactory;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public abstract class RepositoryImpl<ENTITY extends Entity<ID>, ID, JAP_ENTITY> implements Repository<ENTITY, ID> {
 
     protected final JpaRepository<JAP_ENTITY, ID> jpaRepository;
-    protected final EntityManagerFactory entityManager;
+    protected final EntityManagerFactory entityManagerFactory;
 
-     public RepositoryImpl(JpaRepository<JAP_ENTITY, ID> jpaRepository,EntityManagerFactory entityManager) {
+     public RepositoryImpl(JpaRepository<JAP_ENTITY, ID> jpaRepository,EntityManagerFactory entityManagerFactory) {
         this.jpaRepository = jpaRepository;
-        this.entityManager = entityManager;
+        this.entityManagerFactory = entityManagerFactory;
     }
 
     @Override
@@ -28,11 +29,13 @@ public abstract class RepositoryImpl<ENTITY extends Entity<ID>, ID, JAP_ENTITY> 
                 .toList();
     }
 
-    protected List<JAP_ENTITY> _findAll(FindAllArgs args) {
-        String[] sort = args.getSort()!=null?args.getSort(): new String[]{"id"};
-        Sort.Direction direction = args.getDesc()?Sort.Direction.DESC:Sort.Direction.ASC;
-        PageRequest pageRequest = PageRequest.of(args.getPage(),args.getSize(),direction,  sort);
-        return jpaRepository.findAll(pageRequest).stream().toList();
+    protected Set<JAP_ENTITY> _findAll(FindAllArgs args) {
+        return jpaRepository.findAll().stream().collect(Collectors.toSet());
+        // TODO: solve pagination
+        // String[] sort = args.getSort()!=null?args.getSort(): new String[]{"id"};
+        // Sort.Direction direction = args.getDesc()?Sort.Direction.DESC:Sort.Direction.ASC;
+        // PageRequest pageRequest = PageRequest.of(args.getPage(),args.getSize(),direction,  sort);
+        // return jpaRepository.findAll(pageRequest).toSet();
     }
 
     @Override

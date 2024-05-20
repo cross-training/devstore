@@ -23,27 +23,22 @@ public class CategoryRepositoryImpl extends RepositoryImpl<Category,Long,Categor
         super(categoryRepository, entityManager);
     }
 
-    public List<CategoryEntity> getCategoryByNames(List<String> names) {
-        EntityManager em = entityManager.createEntityManager();
+    public Set<CategoryEntity> getCategoryByNames(List<String> names) {
+        EntityManager em = entityManagerFactory.createEntityManager();
         Set<CategoryEntity> categories = new HashSet<>();
         try {
-            em.getTransaction().begin();
             TypedQuery<CategoryEntity> query = em.createQuery(
                     "SELECT c FROM Category c WHERE c.name IN :names",
                     CategoryEntity.class
             );
             query.setParameter("names", names);
             categories.addAll(query.getResultList());
-            em.getTransaction().commit();
         } catch (Exception e) {
-            if (em.getTransaction().isActive()) {
-                em.getTransaction().rollback();
-            }
             e.printStackTrace();
         } finally {
             em.close();
         }
-        return categories.stream().collect(Collectors.toList());
+        return categories;
     }
 
     @Override

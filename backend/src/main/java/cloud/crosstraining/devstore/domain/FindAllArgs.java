@@ -32,14 +32,16 @@ public class FindAllArgs {
         this.sort = sort!=null? sort.split(","):null;
         this.desc = desc!=null?desc:false;
         this.includes = includes!=null? includes.split(","):null;
-        String[] _filters = filters!=null?filters.split(","):null;
         this.filters = new HashMap<String,Object>();
-        for(String _filter: _filters ) {
-            String[] entries = _filter.split("=");
-            if (entries.length == 2) {
-                this.filters.put(entries[0],entries[1]);
-            } else if (entries.length ==1) {
-                this.filters.put(entries[0],true);
+        if (filters!=null) {
+            String[] _filters = filters.split(",");
+            for(String _filter: _filters ) {
+                String[] entries = _filter.split("=");
+                if (entries.length == 2) {
+                    this.filters.put(entries[0],entries[1]);
+                } else if (entries.length ==1) {
+                    this.filters.put(entries[0],true);
+                }
             }
         }
     }
