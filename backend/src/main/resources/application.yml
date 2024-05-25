@@ -8,16 +8,5 @@ spring:
     password: ${DB_PASSWORD}
   jpa:
     database-platform: ${DB_PLATFORM}
-  h2:
-    console:
-      enabled: true
 server:
-  port: ${API_PORT}
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-  endpoint:
-    health:
-      show-details: always
+  port: 8080

@@ -20,3 +20,11 @@
 
 - [retos de programación](https://retosdeprogramacion.com/proyectos/)
 - [example](https://github.com/sguerra/devarmor)
+
+## Infrastructure
+
+- Ansible:
+  - [Install](./tools/ansible/README.md#install)
+  - [Create Inventory](./tools/ansible/inventory.ini)
+- Flyway:
+  - [Install](./tools/flyway/README.md#install)

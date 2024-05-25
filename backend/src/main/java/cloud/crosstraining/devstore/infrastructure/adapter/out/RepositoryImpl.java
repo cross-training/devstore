@@ -4,20 +4,19 @@ import cloud.crosstraining.devstore.domain.Entity;
 import cloud.crosstraining.devstore.domain.FindAllArgs;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.repository.JpaRepository;
 import cloud.crosstraining.devstore.application.port.out.Repository;
-
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.domain.Pageable;
 import javax.persistence.EntityManagerFactory;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public abstract class RepositoryImpl<ENTITY extends Entity<ID>, ID, JAP_ENTITY> implements Repository<ENTITY, ID> {
 
-    protected final JpaRepository<JAP_ENTITY, ID> jpaRepository;
+    protected final PagingAndSortingRepository<JAP_ENTITY, ID> jpaRepository;
     protected final EntityManagerFactory entityManagerFactory;
 
-     public RepositoryImpl(JpaRepository<JAP_ENTITY, ID> jpaRepository,EntityManagerFactory entityManagerFactory) {
+     public RepositoryImpl(PagingAndSortingRepository<JAP_ENTITY, ID> jpaRepository,EntityManagerFactory entityManagerFactory) {
         this.jpaRepository = jpaRepository;
         this.entityManagerFactory = entityManagerFactory;
     }
@@ -30,12 +29,11 @@ public abstract class RepositoryImpl<ENTITY extends Entity<ID>, ID, JAP_ENTITY> 
     }
 
     protected Set<JAP_ENTITY> _findAll(FindAllArgs args) {
-        return jpaRepository.findAll().stream().collect(Collectors.toSet());
-        // TODO: solve pagination
-        // String[] sort = args.getSort()!=null?args.getSort(): new String[]{"id"};
-        // Sort.Direction direction = args.getDesc()?Sort.Direction.DESC:Sort.Direction.ASC;
-        // PageRequest pageRequest = PageRequest.of(args.getPage(),args.getSize(),direction,  sort);
-        // return jpaRepository.findAll(pageRequest).toSet();
+        String[] sortProperties = args.getSort() != null ? args.getSort() : new String[]{"id"};
+        Sort.Direction direction = args.getDesc() ? Sort.Direction.DESC : Sort.Direction.ASC;
+        Sort sort = Sort.by(direction, sortProperties);
+        Pageable pageable = PageRequest.of(args.getPage(), args.getSize(), sort);
+        return jpaRepository.findAll(pageable).toSet();
     }
 
     @Override

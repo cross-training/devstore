@@ -11,7 +11,10 @@ application {
 }
 
 group = 'cloud.crosstraining'
-version = '0.0.1-SNAPSHOT'
+
+bootJar {
+	archiveFileName = projectDir.absolutePath + '/app.jar'
+}
 
 java {
 	toolchain {
@@ -34,6 +37,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+	implementation 'io.micrometer:micrometer-registry-prometheus'
 	runtimeOnly 'com.h2database:h2'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
@@ -52,7 +56,8 @@ tasks.withType(Test) {
 
 bootRun {
 	doFirst {
-		def envFile = file('.env')
+		def envFileName = System.getenv("ENV_FILE") ?: '.dev.env'
+		def envFile = file(envFileName)
 		if (envFile.exists()) {
 			envFile.eachLine { line ->
 				def (key, value) = line.split('=')

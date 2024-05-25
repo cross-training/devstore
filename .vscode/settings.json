@@ -1,11 +1,15 @@
 {
     "cSpell.words": [
+        "ansible",
+        "commandline",
         "crosstraining",
         "devstore",
         "gradlew",
         "hostinger",
         "javac",
         "jupiter",
+        "lineinfile",
+        "linux",
         "prometheus"
     ],
     "java.configuration.updateBuildConfiguration": "disabled"
