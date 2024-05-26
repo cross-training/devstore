@@ -28,3 +28,8 @@
   - [Create Inventory](./tools/ansible/inventory.ini)
 - Flyway:
   - [Install](./tools/flyway/README.md#install)
+- Environment:
+  - [Local with docker compose](./services/local/docker-compose/README.md)
+    - [Database, Backend and Frontend services, nginx, Prometheus and Grafana](./services/local/docker-compose/docker-compose.yaml)
+    - [Up](./services/local/docker-compose/README.md#up)
+    - [Migrate Database](./services/local/docker-compose/README.md#migrate-database)

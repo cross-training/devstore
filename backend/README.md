@@ -11,63 +11,71 @@
 
 ## Gradle
 
-initialize:
+**initialize:**
 
 ```bash
 gradle wrapper --gradle-version 7.5
 ```
 
-Refresh dependencies:
+**Refresh dependencies:**
 
 ```shell
 ./gradlew build --refresh-dependencies
 ```
 
-Build:
+**Build:**
 
 ```shell
 ./gradlew clean build
 ```
 
-Run with dev profile:
+**Run with dev profile:**
 
 ```shell
-ENV_FILE=.dev.env ./gradlew bootRun --args='--spring.profiles.active=dev'
+ENV_FILE=.dev.env ./gradlew bootRun  --args='--spring.profiles.active=dev' 
 ```
 
-Run with prod profile:
+**Run with prod profile:**
 
 ```shell
 ENV_FILE=.prod.env ./gradlew bootRun --args='--spring.profiles.active=prod' 
 ```
 
-Run jar
+**Run jar:**
 
 ```shell
-export DB_DRIVER=org.h2.Driver && 
-export DB_URL=jdbc:h2:mem:testdb  &&
-export DB_PLATFORM=org.hibernate.dialect.H2Dialect &&
-export DB_USER=sa &&
-export DB_PASSWORD=password && 
+export DB_URL=jdbc:postgresql://localhost:5432/devstore  &&
+export DB_USER=devstore &&
+export DB_PASSWORD=devstore && 
 java -jar app.jar --spring.profiles.active=dev 
 ```
 
-Run as docker
+**Run as docker:**
 
 ```shell
-docker build -t flaviorita/devstore/backend:last .
-docker run -e SPRING_PROFILES_ACTIVE=dev -e DB_URL=jdbch2:mem:testdb -e DB_DRIVER=org.h2.Driver -e DB_PLATFORM=org.hibernate.dialect.H2Dialect -e DB_USER=sa -e DB_PASSWORD=password flaviorita/devstore/backend:last
+docker build -t flaviorita/devstore/backend:0.0.2 .
+docker run --network=devstore_backend -p 8080:8080 -e SPRING_PROFILES_ACTIVE=dev -e DB_URL=jdbc:postgresql://postgres:5432/devstore -e DB_USER=devstore -e DB_PASSWORD=devstore flaviorita/devstore/backend:0.0.2
+```
+
+Observations:
+
+- since postgres is running from docker compose and on the devstore_backend network, you must set --network=devstore_backend
+- since the container is running on the devstore_backend network, in order to consume the service from the host, port -p 8080:8080 must be exposed
+
+**Remove image:**
+
+```shell
+docker image rm  flaviorita/devstore/backend:0.0.1 
 ```
 
 ## Endpoints
 
 - actuator:
-  - [health](http://localhost:9001/actuator/health)
-  - [info](http://localhost:9001/actuator/info)
-  - [prometheus](http://localhost:9001/actuator/prometheus)
-  - [metrics](http://localhost:9001/actuator/metrics)
-    - [example metrics](http://localhost:9001/actuator/metrics?names=http.server.requests,http.server.requests,jvm.memory.used,process.cpu.usage,system.cpu.usage)
-
+  - [health](http://localhost:8080/actuator/health)
+  - [info](http://localhost:8080/actuator/info)
+  - [prometheus](http://localhost:8080/actuator/prometheus)
+  - [metrics](http://localhost:8080/actuator/metrics)
+    - [example metrics](http://localhost:8080/actuator/metrics?names=http.server.requests,http.server.requests,jvm.memory.used,process.cpu.usage,system.cpu.usage)
 
 ## References
 

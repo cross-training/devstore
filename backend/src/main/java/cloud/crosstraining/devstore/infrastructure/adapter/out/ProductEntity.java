@@ -12,6 +12,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "Products")
 public class ProductEntity  {
 
     @Id
@@ -24,7 +25,7 @@ public class ProductEntity  {
     private Double review;
     @ManyToMany
     @JoinTable(
-            name = "ProductCategory",
+            name = "Product_Category",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
