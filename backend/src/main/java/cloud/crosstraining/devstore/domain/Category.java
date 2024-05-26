@@ -9,9 +9,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper=false)
-public class Category extends EntityBase implements Entity<Long> {
-    private Long id;
-    private String code;
+public class Category extends EntityBase implements Entity<String> {
+    private String id;
     private String name;
     private String description;
 }

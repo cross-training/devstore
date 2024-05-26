@@ -16,6 +16,11 @@ public class ProductRepositoryImpl extends RepositoryImpl<Product,Long,ProductEn
 
     private final CategoryRepositoryImpl categoryRepository;
 
+    @Override
+    protected Class<ProductEntity> classEntity() {
+        return ProductEntity.class;
+    }
+
     @Autowired
     public ProductRepositoryImpl(
             JpaProductRepository jpaProductRepository,
@@ -93,7 +98,7 @@ public class ProductRepositoryImpl extends RepositoryImpl<Product,Long,ProductEn
 
     @Override
     protected Product toDomain(ProductEntity entity) {
-        Product product =  new Product(entity.getId(),entity.getCode(), entity.getName(), entity.getPrice(), entity.getDescription(), new ArrayList<String>(), entity.getUrl(),entity.getReview(), entity.getImageUrl());
+        Product product =  new Product(entity.getId(), entity.getName(), entity.getPrice(), entity.getDescription(), new ArrayList<String>(), entity.getUrl(),entity.getReview(), entity.getImageUrl());
         product.getCategories().addAll(entity.getCategories().stream().map(p-> p.getName()).collect(Collectors.toList()));
         return product;
     }
@@ -104,7 +109,7 @@ public class ProductRepositoryImpl extends RepositoryImpl<Product,Long,ProductEn
     }
 
     protected ProductEntity toEntity(Product product,Set<CategoryEntity> categories) {
-        ProductEntity entity = new ProductEntity(product.getId(), product.getCode(), product.getName(), product.getPrice(), product.getDescription(),product.getReviews() , null, product.getUrl(), product.getImageUrl());
+        ProductEntity entity = new ProductEntity(product.getId(), product.getName(), product.getPrice(), product.getDescription(),product.getReviews() , null, product.getUrl(), product.getImageUrl());
         if (categories!=null) {
             entity.setCategories(categories);
         }

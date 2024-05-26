@@ -11,7 +11,6 @@ import java.util.List;
 @EqualsAndHashCode(callSuper=false)
 public class Product extends EntityBase implements Entity<Long>  {
     private Long id;
-    private String code;
     private String name;
     private Double price;
     private String description;

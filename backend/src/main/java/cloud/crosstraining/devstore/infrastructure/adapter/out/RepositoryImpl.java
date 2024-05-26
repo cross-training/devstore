@@ -7,18 +7,24 @@ import org.springframework.data.domain.Sort;
 import cloud.crosstraining.devstore.application.port.out.Repository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.domain.Pageable;
+
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public abstract class RepositoryImpl<ENTITY extends Entity<ID>, ID, JAP_ENTITY> implements Repository<ENTITY, ID> {
 
     protected final PagingAndSortingRepository<JAP_ENTITY, ID> jpaRepository;
     protected final EntityManagerFactory entityManagerFactory;
+    protected final EntityManager entityManager;
 
      public RepositoryImpl(PagingAndSortingRepository<JAP_ENTITY, ID> jpaRepository,EntityManagerFactory entityManagerFactory) {
         this.jpaRepository = jpaRepository;
         this.entityManagerFactory = entityManagerFactory;
+        this.entityManager= entityManagerFactory.createEntityManager();
     }
 
     @Override
@@ -46,7 +52,6 @@ public abstract class RepositoryImpl<ENTITY extends Entity<ID>, ID, JAP_ENTITY> 
         return jpaRepository.findById(id).orElse(null);
     }
 
-
     @Override
     public ENTITY save(ENTITY entity) {
         return toDomain(jpaRepository.save(toEntity(entity)));
@@ -57,6 +62,8 @@ public abstract class RepositoryImpl<ENTITY extends Entity<ID>, ID, JAP_ENTITY> 
          jpaRepository.deleteById(id);
     }
 
+
     protected abstract ENTITY toDomain(JAP_ENTITY japEntity);
     protected abstract JAP_ENTITY toEntity(ENTITY entity);
+    protected abstract Class<JAP_ENTITY> classEntity();
 }
