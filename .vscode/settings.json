@@ -15,6 +15,7 @@
         "javac",
         "jdbc",
         "jupiter",
+        "Keycloak",
         "lineinfile",
         "linewidth",
         "linux",
@@ -26,7 +27,8 @@
         "prometheus",
         "rgba",
         "xaxis",
-        "yaxes"
+        "yaxes",
+        "Zipkin"
     ],
     "java.configuration.updateBuildConfiguration": "disabled"
 }
