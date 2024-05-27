@@ -5,6 +5,8 @@ import cloud.crosstraining.devstore.domain.FindAllArgs;
 import cloud.crosstraining.devstore.domain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -23,35 +25,36 @@ public class ProductRepositoryImpl extends RepositoryImpl<Product,Long,ProductEn
 
     @Autowired
     public ProductRepositoryImpl(
-            JpaProductRepository jpaProductRepository,
+            JpaProductRepository jpaRepository,
             EntityManagerFactory entityManager,
             CategoryRepositoryImpl categoryRepository
     ) {
-        super(jpaProductRepository,entityManager);
+        super(jpaRepository,entityManager);
         this.categoryRepository = categoryRepository;
     }
 
     @Override
-    public Product findById(Long id) {
+    public Mono<Product> findById(Long id) {
         ProductEntity entity = _findById(id);
         if (entity!= null) {
             // force get children categories
             entity.getCategories().size();
+            return Mono.just(toDomain(entity));
         }
-        return toDomain(entity);
+        return null;
     }
 
     @Override
-    public List<Product> findAll(FindAllArgs args) {
+    public Flux<Product> findAll(FindAllArgs args) {
         Set<ProductEntity> entities = _findAll(args);
         if(Arrays.stream(args.getIncludes()).anyMatch(p -> p.toLowerCase() == "categories")) {
             entities.stream().forEach(p-> p.getCategories().size());
         }
-        return entities.stream().map(this::toDomain).toList();
+        return Flux.fromIterable(entities.stream().map(this::toDomain).toList());
     }
 
     @Override
-    public Product save(Product entity) {
+    public Mono<Product> save(Product entity) {
         ProductEntity current= null;
         EntityManager em = entityManagerFactory.createEntityManager();
         try {
@@ -93,7 +96,7 @@ public class ProductRepositoryImpl extends RepositoryImpl<Product,Long,ProductEn
         } finally {
             em.close();
         }
-        return toDomain(current);
+        return Mono.just(toDomain(current));
     }
 
     @Override

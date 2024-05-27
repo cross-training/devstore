@@ -5,6 +5,9 @@ import cloud.crosstraining.devstore.domain.Entity;
 import cloud.crosstraining.devstore.domain.FindAllArgs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
 import java.util.List;
 import java.util.Map;
 
@@ -19,28 +22,33 @@ public abstract class Controller<ENTITY extends  Entity<ID>,ID> {
     }
 
     @GetMapping
-    public List<ENTITY> getAll(String filters, String includes,Integer page, Integer size,String sort, Boolean desc) {
+    public Flux<ENTITY> getAll(String filters, String includes, Integer page, Integer size, String sort, Boolean desc) {
         FindAllArgs args = new FindAllArgs(filters,includes,page,size,sort,desc);
         return service.getAll(args);
     }
 
     @GetMapping("/{id}")
-    public ENTITY getById(@PathVariable ID id) {
+    public Mono<ENTITY> getById(@PathVariable ID id) {
         return service.getById(id);
     }
 
     @PostMapping
-    public ENTITY create(@RequestBody ENTITY entity) {
+    public Mono<ENTITY> create(@RequestBody ENTITY entity) {
         return service.create(entity);
     }
 
+    @PostMapping("/bulk")
+    public Flux<ENTITY> bulkInsert(@RequestBody List<ENTITY> entities) {
+        return service.bulkInsert(entities);
+    }
+
     @PutMapping("/{id}")
-    public ENTITY update(@PathVariable ID id, @RequestBody ENTITY entity) {
+    public Mono<ENTITY> update(@PathVariable ID id, @RequestBody ENTITY entity) {
         return service.update(id, entity);
     }
 
     @PatchMapping("/{id}")
-    public ENTITY updatePartially(@PathVariable ID id, @RequestBody Map<String, Object> updates) {
+    public Mono<ENTITY> updatePartially(@PathVariable ID id, @RequestBody Map<String, Object> updates) {
         return service.updatePartially(id, updates);
     }
 

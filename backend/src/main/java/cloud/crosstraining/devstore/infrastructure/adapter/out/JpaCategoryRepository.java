@@ -1,6 +1,7 @@
 package cloud.crosstraining.devstore.infrastructure.adapter.out;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.stereotype.Repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
-public interface JpaCategoryRepository extends JpaRepository<CategoryEntity,String> {
+@Repository
+public interface JpaCategoryRepository extends PagingAndSortingRepository<CategoryEntity,String> {
 }

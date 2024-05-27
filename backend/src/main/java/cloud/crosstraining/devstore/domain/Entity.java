@@ -2,6 +2,7 @@ package cloud.crosstraining.devstore.domain;
 
 public interface Entity<ID>  {
     void setId(ID id);
+    ID getId();
 }
 
 //public abstract class Entity<ID> implements Serializable {

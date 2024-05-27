@@ -24,7 +24,7 @@ services:
   backend:
     depends_on:
       - postgres
-    image: flaviorita/devstore/backend:0.0.2
+    image: flaviorita/devstore/backend:0.0.4
     restart: always
     deploy:
       replicas: 3

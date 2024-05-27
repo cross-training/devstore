@@ -8,6 +8,12 @@
 docker-compose -p devstore up -d
 ```
 
+Only postgres:
+
+```bash
+docker-compose -p devstore up -d postgres
+```
+
 ### Migrate Database
 
 ```bash

@@ -7,6 +7,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import reactor.core.publisher.Mono;
+
 import static org.mockito.Mockito.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -26,24 +28,24 @@ class CategoryCrudTest {
 	public void testCrud() {
 		// create
 		Category category = new Category("laptops","laptops","Portable computers suitable for various tasks");
-		when(categoryRepository.save(any())).thenReturn(category);
-		Category savedCategory = service.create(category);
+		when(categoryRepository.save(any())).thenReturn(Mono.just(category));
+		Category savedCategory = service.create(category).block();
 
 		// find
-		when(categoryRepository.findById(savedCategory.getId())).thenReturn(savedCategory);
-		Category retrievedCategory = service.getById(savedCategory.getId());
+		when(categoryRepository.findById(savedCategory.getId())).thenReturn(Mono.just(savedCategory));
+		Category retrievedCategory = service.getById(savedCategory.getId()).block();
 		assertThat(retrievedCategory).isEqualTo(savedCategory);
 
 		// update
-		Category updatedCategory = service.getById(category.getId());
+		Category updatedCategory = service.getById(category.getId()).block();
 		updatedCategory.setName("Laptops");
-		when(categoryRepository.save(any())).thenReturn(updatedCategory);
-		Category modifiedCategory = service.update(updatedCategory.getId(), updatedCategory);
+		when(categoryRepository.save(any())).thenReturn(Mono.just(updatedCategory));
+		Category modifiedCategory = service.update(updatedCategory.getId(), updatedCategory).block();
 		assertThat(modifiedCategory).isEqualTo(updatedCategory);
 
 		// delete
-		doNothing().when(categoryRepository).deleteById(updatedCategory.getId());
-		service.deleteById(updatedCategory.getId());
+		when(categoryRepository.deleteById(updatedCategory.getId())).thenReturn(Mono.empty());
+		Mono<Void> deleteMono = service.deleteById(updatedCategory.getId());
 		verify(categoryRepository, times(1)).deleteById(updatedCategory.getId());
 	}
 }

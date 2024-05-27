@@ -15,7 +15,7 @@ CREATE TABLE Products (
 );
 
 CREATE TABLE Product_Category (
-    product_id LONG NOT NULL,
+    product_id INTEGER NOT NULL,
     category_id VARCHAR(30) NOT NULL,
     PRIMARY KEY (product_id, category_id),
     FOREIGN KEY (product_id) REFERENCES Products(id),

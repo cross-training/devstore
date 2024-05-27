@@ -32,7 +32,7 @@ gradle wrapper --gradle-version 7.5
 **Run with dev profile:**
 
 ```shell
-ENV_FILE=.dev.env ./gradlew bootRun  --args='--spring.profiles.active=dev' 
+ENV_FILE=.dev.envc  --args='--spring.profiles.active=dev' 
 ```
 
 **Run with prod profile:**
@@ -53,8 +53,8 @@ java -jar app.jar --spring.profiles.active=dev
 **Run as docker:**
 
 ```shell
-docker build -t flaviorita/devstore/backend:0.0.2 .
-docker run --network=devstore_backend -p 8080:8080 -e SPRING_PROFILES_ACTIVE=dev -e DB_URL=jdbc:postgresql://postgres:5432/devstore -e DB_USER=devstore -e DB_PASSWORD=devstore flaviorita/devstore/backend:0.0.2
+docker build -t flaviorita/devstore/backend:0.0.4 .
+docker run --network=devstore_backend -p 8080:8080 -e SPRING_PROFILES_ACTIVE=dev -e DB_URL=jdbc:postgresql://postgres:5432/devstore -e DB_USER=devstore -e DB_PASSWORD=devstore flaviorita/devstore/backend:0.0.4
 ```
 
 Observations:
@@ -65,7 +65,7 @@ Observations:
 **Remove image:**
 
 ```shell
-docker image rm  flaviorita/devstore/backend:0.0.1 
+docker image rm  flaviorita/devstore/backend:0.0.3 
 ```
 
 ## Endpoints

@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 @Repository
-public class CategoryRepositoryImpl extends RepositoryImpl<Category,String,CategoryEntity>  implements CategoryRepository {
+public class CategoryRepositoryImpl extends RepositoryImpl<Category,String,CategoryEntity> implements CategoryRepository {
 
 
     @Override
@@ -21,8 +21,9 @@ public class CategoryRepositoryImpl extends RepositoryImpl<Category,String,Categ
     }
 
     @Autowired
-    public CategoryRepositoryImpl(JpaCategoryRepository categoryRepository,EntityManagerFactory entityManager) {
-        super(categoryRepository, entityManager);
+    public CategoryRepositoryImpl(JpaCategoryRepository jpaCategoryRepository,
+                                  EntityManagerFactory entityManagerFactory) {
+        super(jpaCategoryRepository, entityManagerFactory);
     }
 
     public Set<CategoryEntity> getCategoryByNames(List<String> names) {
