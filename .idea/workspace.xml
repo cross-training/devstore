@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6aa763cd-0b3f-44fd-a3cf-128e10a49caf" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/backend/.dev.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.prod-env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/doc/postman/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/doc/postman/export/archive.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/doc/postman/export/collection/150ec238-8c69-4cfc-b29f-2f14d574f954.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/doc/postman/export/collection/1587556c-f26d-459d-9d70-e5c88b603e69.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/doc/postman/export/collection/35e761ed-5a98-400c-8714-0fe6671865cf.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/doc/postman/export/collection/45f2ddfe-284d-43fb-98c0-c79aab699533.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/doc/postman/export/collection/50a61319-58aa-4b83-b5d2-77d71d8bca38.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/doc/postman/export/collection/58fac1e1-7414-4c0a-9eb3-67bb34bfa77c.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/doc/postman/export/collection/5b07993f-4206-4058-9498-d5caa5bfd51d.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/doc/postman/export/collection/5c8db11f-c39c-4d04-8957-1923729e9fa2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/doc/postman/export/collection/651a1680-9894-43db-8a48-8e90eb527ecf.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/doc/postman/export/collection/6a680b11-b00c-4001-a5d9-a346b8fda29f.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/doc/postman/export/collection/6c2a7a5c-db05-4936-8832-498264a2813b.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/doc/postman/export/collection/6dcf3283-8771-4e8d-bb33-0e54eeb2d8ea.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/doc/postman/export/collection/95867a7c-bd97-4080-9e39-684fe7a13748.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/doc/postman/export/collection/9b3be42b-1e45-4f95-b725-fffb008b1471.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/doc/postman/export/collection/a3601ca6-d3a1-4075-a699-46cd0ca05166.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/doc/postman/export/collection/ad3202fa-c852-4a04-bfb0-fae2c0bc4ce9.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/doc/postman/export/collection/c3e5fff3-4659-4d08-b4cb-295c0d38c48c.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/doc/postman/export/collection/d4f21c59-0b7d-4bed-ba4f-b692eb5f31fc.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/doc/postman/export/environment/2b0488e8-30ae-424b-925c-c5d6b86db7ac.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/doc/postman/export/environment/3aec0096-e7f4-4ee9-a84b-23007eb746fd.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/doc/postman/export/environment/42b494c5-9aea-48ca-8ca8-5510b48b9198.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/doc/postman/export/environment/74ca95e2-9bcb-4b33-91be-8ea1112df6ac.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/doc/postman/export/environment/8e668a76-f53c-4afe-a8df-973db09576a8.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/doc/postman/export/environment/e5d409ec-1fc6-4b35-87ac-2b76ee21e360.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/cloud/crosstraining/devstore/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/cloud/crosstraining/devstore/application/port/in/CategoryService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/cloud/crosstraining/devstore/application/port/in/HealthService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/cloud/crosstraining/devstore/application/port/in/ProductService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/cloud/crosstraining/devstore/application/port/in/Service.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/cloud/crosstraining/devstore/application/port/out/CategoryRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/cloud/crosstraining/devstore/application/port/out/ProductRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/cloud/crosstraining/devstore/application/port/out/Repository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/cloud/crosstraining/devstore/application/service/CategoryServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/cloud/crosstraining/devstore/application/service/ProductServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/cloud/crosstraining/devstore/application/service/ServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/cloud/crosstraining/devstore/domain/Category.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/cloud/crosstraining/devstore/domain/Entity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/cloud/crosstraining/devstore/domain/EntityBase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/cloud/crosstraining/devstore/domain/FindAllArgs.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/cloud/crosstraining/devstore/domain/FindArgs.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/cloud/crosstraining/devstore/domain/Product.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/cloud/crosstraining/devstore/infrastructure/adapter/in/CategoryController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/cloud/crosstraining/devstore/infrastructure/adapter/in/Controller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/cloud/crosstraining/devstore/infrastructure/adapter/in/ProductController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/cloud/crosstraining/devstore/infrastructure/adapter/out/CategoryEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/cloud/crosstraining/devstore/infrastructure/adapter/out/CategoryRepositoryImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/cloud/crosstraining/devstore/infrastructure/adapter/out/JpaCategoryRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/cloud/crosstraining/devstore/infrastructure/adapter/out/JpaProductRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/cloud/crosstraining/devstore/infrastructure/adapter/out/ProductEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/cloud/crosstraining/devstore/infrastructure/adapter/out/ProductRepositoryImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/cloud/crosstraining/devstore/infrastructure/adapter/out/RepositoryImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application-dev.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application-prod.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/cloud/crosstraining/devstore/CategoryCrudTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/local/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/local/configuration/grafana/provisioning/dashboards/dashboard.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/local/configuration/grafana/provisioning/dashboards/nodejs_application_dashboard.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/local/configuration/grafana/provisioning/datasources/datasources.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/local/configuration/nginx/nginx.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/local/configuration/prometheus/prometheus.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/local/docker-compose/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/local/docker-compose/docker-compose.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/local/docker-compose/flyway.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/local/docker-compose/grafana/provisioning/dashboards/dashboard.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/local/docker-compose/grafana/provisioning/dashboards/grafana-dashboard.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/local/docker-compose/grafana/provisioning/datasources/datasources.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/local/docker-compose/nginx/nginx.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/local/docker-compose/prometheus/prometheus.yml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 6
+}]]></component>
+  <component name="ProjectId" id="2h81SxhTCjSk9wxHTzNvOxbjRe3" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/flavio/personal/org/cross-training/devstore/catalog-service"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6aa763cd-0b3f-44fd-a3cf-128e10a49caf" name="Changes" comment="" />
+      <created>1716960894316</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1716960894316</updated>
+    </task>
+    <servers />
+  </component>
+</project>

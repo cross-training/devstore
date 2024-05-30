@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: catalog
+  profiles:
+    active: dev
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        default_schema: catalog
+server:
+  port: 9001
