@@ -2,6 +2,7 @@ package cloud.crosstraining.devstore.catalog.infrastructure.adapter.out;
 
 import cloud.crosstraining.devstore.catalog.application.port.out.CategoryRepository;
 import cloud.crosstraining.devstore.catalog.domain.Category;
+import cloud.crosstraining.devstore.common.infrastructure.adapter.out.RepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;

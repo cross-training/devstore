@@ -3,7 +3,6 @@ package cloud.crosstraining.devstore.catalog.infrastructure.adapter.out;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 
 @Entity
