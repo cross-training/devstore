@@ -5,7 +5,7 @@ import cloud.crosstraining.devstore.rating.application.port.out.RatingRepository
 import cloud.crosstraining.devstore.rating.domain.Rating;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
+import javax.persistence.EntityManagerFactory;
 import java.time.*;
 import java.util.Optional;
 
@@ -13,8 +13,8 @@ import java.util.Optional;
 public class RatingRepositoryImpl extends RepositoryImpl<Rating,Long,RatingEntity> implements RatingRepository {
 
     @Autowired
-    public RatingRepositoryImpl(RatingJpaRepository ratingJpaRepository) {
-        super(ratingJpaRepository);
+    public RatingRepositoryImpl(RatingJpaRepository jpaRepository, EntityManagerFactory entityManagerFactory) {
+        super(jpaRepository,entityManagerFactory);
     }
 
     @Override
