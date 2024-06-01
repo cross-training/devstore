@@ -24,13 +24,15 @@ public class ProductRepositoryImpl extends RepositoryImpl<Product,Long,ProductEn
         return ProductEntity.class;
     }
 
+
+
     @Autowired
     public ProductRepositoryImpl(
             JpaProductRepository jpaRepository,
-            EntityManagerFactory entityManager,
+            EntityManagerFactory entityManagerFactory,
             CategoryRepositoryImpl categoryRepository
     ) {
-        super(jpaRepository,entityManager);
+        super(jpaRepository,entityManagerFactory);
         this.categoryRepository = categoryRepository;
     }
 

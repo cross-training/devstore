@@ -9,9 +9,12 @@ spring:
     username: ${DB_USER}
     password: ${DB_PASSWORD}
   jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
     properties:
       hibernate:
         default_schema: catalog
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 server:
   port: 9001

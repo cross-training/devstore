@@ -24,13 +24,41 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'javax.persistence:javax.persistence-api:2.2'
+	implementation 'org.hibernate:hibernate-core:7.0.0.Alpha2'
 	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-authorization-server'
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation 'io.micrometer:micrometer-registry-prometheus'
+	implementation 'io.micrometer:micrometer-tracing-bridge-brave'
+	implementation 'io.zipkin.reporter2:zipkin-reporter-brave'
+	implementation 'org.flywaydb:flyway-core'
+	implementation files('../common-library/cloud.crosstraining.devstore.common-1.0.1.jar')
 	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
+	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'io.projectreactor:reactor-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
-tasks.named('test') {
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+tasks.withType(Test) {
 	useJUnitPlatform()
+}
+
+bootRun {
+	doFirst {
+		def envFileName = System.getenv("ENV_FILE") ?: '.dev.env'
+		def envFile = file(envFileName)
+		if (envFile.exists()) {
+			envFile.eachLine { line ->
+				def (key, value) = line.split('=')
+				environment key, value
+			}
+		}
+	}
 }

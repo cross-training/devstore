@@ -22,9 +22,8 @@ public class CategoryRepositoryImpl extends RepositoryImpl<Category,String,Categ
     }
 
     @Autowired
-    public CategoryRepositoryImpl(JpaCategoryRepository jpaCategoryRepository,
-                                  EntityManagerFactory entityManagerFactory) {
-        super(jpaCategoryRepository, entityManagerFactory);
+    public CategoryRepositoryImpl(JpaCategoryRepository jpaRepository,EntityManagerFactory entityManagerFactory) {
+        super(jpaRepository,entityManagerFactory);
     }
 
     public Set<CategoryEntity> getCategoryByNames(List<String> names) {

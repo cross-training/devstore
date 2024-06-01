@@ -2,6 +2,7 @@ package cloud.crosstraining.devstore.common.infrastructure.adapter.out;
 
 import cloud.crosstraining.devstore.common.domain.Entity;
 import cloud.crosstraining.devstore.common.domain.FindAllArgs;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import cloud.crosstraining.devstore.common.application.port.out.Repository;
@@ -20,12 +21,15 @@ public abstract class RepositoryImpl<ENTITY extends Entity<ID>, ID, JAP_ENTITY> 
     protected final PagingAndSortingRepository<JAP_ENTITY, ID>  jpaRepository;
     protected final EntityManagerFactory entityManagerFactory;
 
+
      public RepositoryImpl(
              PagingAndSortingRepository<JAP_ENTITY, ID> jpaRepository,
              EntityManagerFactory entityManagerFactory) {
         this.jpaRepository = jpaRepository;
         this.entityManagerFactory = entityManagerFactory;
     }
+
+
 
     @Override
     public Flux<ENTITY> findAll(FindAllArgs args) {
@@ -64,7 +68,7 @@ public abstract class RepositoryImpl<ENTITY extends Entity<ID>, ID, JAP_ENTITY> 
     public Flux<ENTITY> bulkInsert(List<ENTITY> entities) {
         List<JAP_ENTITY> _entities = toEntities(entities);
         int batchSize = 100;
-        EntityManager em =entityManagerFactory.createEntityManager();
+        EntityManager em = entityManagerFactory.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
@@ -102,7 +106,6 @@ public abstract class RepositoryImpl<ENTITY extends Entity<ID>, ID, JAP_ENTITY> 
     protected List<ENTITY> toDomains(List<JAP_ENTITY> entities) {
         return entities.stream().map(p-> toDomain(p)).toList();
     }
-
 
     protected abstract ENTITY toDomain(JAP_ENTITY japEntity);
     protected abstract JAP_ENTITY toEntity(ENTITY entity);

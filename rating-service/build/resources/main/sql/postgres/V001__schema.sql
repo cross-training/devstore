@@ -1,0 +1,2 @@
+CREATE USER rating WITH PASSWORD 'rating';
+CREATE SCHEMA rating AUTHORIZATION rating;
