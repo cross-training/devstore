@@ -16,7 +16,6 @@ CREATE USER catalog WITH PASSWORD 'catalog';
 CREATE SCHEMA catalog AUTHORIZATION catalog;
 ```
 
-
 **Run Scripts:**
 
 ```bash

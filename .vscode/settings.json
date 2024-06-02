@@ -30,6 +30,7 @@
         "postgresql",
         "prometheus",
         "rgba",
+        "secr",
         "springframework",
         "xaxis",
         "yaxes",

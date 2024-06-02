@@ -14,5 +14,5 @@ spring:
   security:
     user:
       name: devstore
-      password: pa$$w0rd
+      password: secr3t
          

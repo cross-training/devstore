@@ -1,0 +1,10 @@
+spring:
+ application:
+   name: catalog
+ profiles:
+   active: dev
+ cloud:
+   config:
+     uri: http://localhost:9101
+     username: devstore
+     password: secr3t

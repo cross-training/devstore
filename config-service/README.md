@@ -21,9 +21,11 @@
 **Test:**
 
 ```shell
-curl -u 'devstore:pa$$w0rd'  http://localhost:9101/catalog-service/dev
+curl -u devstore:secr3t  http://localhost:9101/catalog/devc
+curl http://devstore:secr3t@localhost:9101/catalog/dev
 ```
 
 ## References
 
 - [tutorial](https://www.youtube.com/watch?v=ydtswONk9TE&list=PLxy6jHplP3Hi_W8iuYSbAeeMfaTZt49PW&index=12)
+  - [github](https://github.com/digitallab-academy/ms-course-youtube)
