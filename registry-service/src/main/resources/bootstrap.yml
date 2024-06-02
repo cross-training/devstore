@@ -1,8 +1,20 @@
 spring:
   application:
-    name: registry
+    name: registry-service
+  config:
+    import: optional:configserver:http://localhost:9101
   cloud:
     config:
-      uri: http://localhost:8081
+      enabled: true
       username: devstore
       password: secr3t
+#spring:
+#  application:
+#    name: registry
+#  cloud:
+#    config:
+#      uri: http://localhost:9101
+#      username: devstore
+#      password: secr3t
+#  config:
+#    import: optional:configserver:http://localhost:9101
