@@ -2,7 +2,7 @@
 
 ## Spring Initializer
 
-- [start](https://start.spring.io/#!type=gradle-project&language=java&platformVersion=3.2.6&packaging=jar&jvmVersion=17&groupId=cloud.crosstraining.devstore&artifactId=catalog&name=catalog&description=Demo%20project%20for%20Spring%20Boot&packageName=cloud.crosstraining.devstore.catalog&dependencies=data-jpa,actuator,lombok,data-rest)
+- [start](https://start.spring.io/#!type=gradle-project&language=java&platformVersion=3.2.6&packaging=jar&jvmVersion=17&groupId=cloud.crosstraining.devstore&artifactId=catalog&name=catalog&description=Demo%20project%20for%20Spring%20Boot&packageName=cloud.crosstraining.devstore.catalog&dependencies=data-jpa,actuator,lombok,data-rest,cloud-config-client)
 
 ## Gradle
 

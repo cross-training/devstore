@@ -6,22 +6,22 @@
 
 ## Gradle
 
-**initialize:**
-
-```bash
-gradle wrapper --gradle-version 7.5
-```
-
-**Refresh dependencies:**
-
-```shell
-./gradlew build --refresh-dependencies
-```
-
 **Build:**
 
 ```shell
 ./gradlew clean build
+```
+
+**Run:**
+
+```shell
+./gradlew bootRun
+```
+
+**Test:**
+
+```shell
+curl -u 'devstore:pa$$w0rd'  http://localhost:9101/catalog-service/dev
 ```
 
 ## References
