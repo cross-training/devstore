@@ -2,15 +2,14 @@ package cloud.crosstraining.devstore.catalog.infrastructure.adapter.out;
 
 import cloud.crosstraining.devstore.catalog.application.port.out.ProductRepository;
 import cloud.crosstraining.devstore.catalog.domain.Product;
-import cloud.crosstraining.devstore.common.domain.FindAllArgs;
 import cloud.crosstraining.devstore.common.infrastructure.adapter.out.RepositoryImpl;
+import cloud.crosstraining.devstore.common.domain.FindAllArgs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
 import java.util.*;
 import java.util.stream.Collectors;
 

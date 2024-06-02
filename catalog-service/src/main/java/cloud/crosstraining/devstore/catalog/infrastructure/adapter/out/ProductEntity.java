@@ -1,10 +1,11 @@
 package cloud.crosstraining.devstore.catalog.infrastructure.adapter.out;
 
+
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
-import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 

@@ -3,11 +3,11 @@ package cloud.crosstraining.devstore.catalog.infrastructure.adapter.out;
 import cloud.crosstraining.devstore.catalog.application.port.out.CategoryRepository;
 import cloud.crosstraining.devstore.catalog.domain.Category;
 import cloud.crosstraining.devstore.common.infrastructure.adapter.out.RepositoryImpl;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.TypedQuery;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -22,7 +22,7 @@ public class CategoryRepositoryImpl extends RepositoryImpl<Category,String,Categ
     }
 
     @Autowired
-    public CategoryRepositoryImpl(JpaCategoryRepository jpaRepository,EntityManagerFactory entityManagerFactory) {
+    public CategoryRepositoryImpl(JpaCategoryRepository jpaRepository, EntityManagerFactory entityManagerFactory) {
         super(jpaRepository,entityManagerFactory);
     }
 

@@ -8,9 +8,9 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/cross-training/devstore.git
-          search-paths: config-data
-          default-label: develop
+          uri: https://github.com/cross-training/devstore-config.git
+          search-paths: services
+          default-label: main
   security:
     user:
       name: devstore

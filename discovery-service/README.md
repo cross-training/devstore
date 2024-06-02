@@ -1,31 +1,13 @@
-# Discovery Service
+# Registry Service
 
-## Spring Initializer
+## Initialize
 
-- [start](https://start.spring.io/#!type=gradle-project&language=java&platformVersion=3.2.6&packaging=jar&jvmVersion=17&groupId=cloud.crosstraining.devstore&artifactId=discovery&name=discovery&description=Spring%20DevStore%20Discovery%20Server&packageName=cloud.crosstraining.devstore.discovery&dependencies=actuator,data-rest,cloud-eureka,cloud-config-client)
+- [spring](https://start.spring.io/#!type=gradle-project&language=java&platformVersion=3.2.6&packaging=jar&jvmVersion=17&groupId=cloud.crosstraining.devstore&artifactId=registry&name=registry&description=Demo%20project%20for%20Spring%20Boot&packageName=cloud.crosstraining.devstore.registry&dependencies=cloud-eureka-server,cloud-config-client)
 
-## Tasks
+## Run 
 
-**Build:**
+- [registry server](http://localhost:9102)
 
-```shell
-./gradlew clean build
-```
+## References
 
-**Run:**
-
-```shell
-./gradlew bootRun
-```
-
-**Test:**
-
-```shell
-./gradlew test
-```
-
-**Docker:**
-
-```shell
-./gradlew buildDocker
-```
+- [tutorial](https://www.youtube.com/watch?v=lJ3-VPzhrFY&list=PLxy6jHplP3Hi_W8iuYSbAeeMfaTZt49PW&index=13)

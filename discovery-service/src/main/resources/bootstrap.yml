@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: discovery-service
+  cloud:
+    config:
+      uri: http://localhost:9101
+      username: devstore
+      password: secr3t
+      enabled: true
