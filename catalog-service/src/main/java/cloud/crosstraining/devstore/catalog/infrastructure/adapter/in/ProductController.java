@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/catalog/products")
 public class ProductController extends Controller<Product, Long> {
 
     private final ProductService productService;

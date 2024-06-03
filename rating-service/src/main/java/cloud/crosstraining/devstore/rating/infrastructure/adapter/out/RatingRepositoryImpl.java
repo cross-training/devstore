@@ -5,7 +5,7 @@ import cloud.crosstraining.devstore.rating.application.port.out.RatingRepository
 import cloud.crosstraining.devstore.rating.domain.Rating;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import javax.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityManagerFactory;
 import java.time.*;
 import java.util.Optional;
 
