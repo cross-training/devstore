@@ -7,4 +7,4 @@ scrape_configs:
       - targets: ['prometheus:9090']
   - job_name: "node"
     static_configs:
-      - targets: ["devstore_backend_1:8080","devstore_backend_2:8080","devstore_backend_3:8080"]
+      - targets: ["config-server:8888","discovery-server:8761","api-gateway:8080"]

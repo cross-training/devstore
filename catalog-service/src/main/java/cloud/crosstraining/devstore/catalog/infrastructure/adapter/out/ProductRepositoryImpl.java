@@ -4,6 +4,7 @@ import cloud.crosstraining.devstore.catalog.application.port.out.ProductReposito
 import cloud.crosstraining.devstore.catalog.domain.Product;
 import cloud.crosstraining.devstore.common.infrastructure.adapter.out.RepositoryImpl;
 import cloud.crosstraining.devstore.common.domain.FindAllArgs;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
@@ -13,6 +14,7 @@ import jakarta.persistence.EntityManagerFactory;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Repository
 public class ProductRepositoryImpl extends RepositoryImpl<Product,Long,ProductEntity> implements ProductRepository {
 

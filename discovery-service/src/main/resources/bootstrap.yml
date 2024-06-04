@@ -3,7 +3,7 @@ spring:
     name: discovery-service
   cloud:
     config:
-      uri: http://localhost:9101
-      username: devstore
-      password: secr3t
+      uri: ${CONFIG_SERVICE_URI}
+      username: ${CONFIG_SERVICE_USERNAME:devstore}
+      password: ${CONFIG_SERVICE_PASSWORD:secr3t}
       enabled: true

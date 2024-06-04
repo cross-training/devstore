@@ -8,15 +8,23 @@
 docker-compose -p devstore up -d
 ```
 
-Only postgres:
+Only:
 
 ```bash
+docker-compose -p devstore up -d tracing-server
+docker-compose -p devstore up -d config-server
+docker-compose -p devstore up -d discovery-server
+docker-compose -p devstore up -d api-gateway
 docker-compose -p devstore up -d postgres
 ```
 
 ### Endpoints
 
-- backend service balanced by nginx:
+- [Discovery](http://localhost:8761)
+- [Zipkin](http://localhost:9411)
+- [Config](http://localhost:8888)
+  - [catalog-service](http://localhost:8888/catalog-service)
+- catalog service:
   - [health](http://localhost:8081/health)
   - [metrics](http://localhost:8081/metrics)
   - [categories](http://localhost:8081/categories)

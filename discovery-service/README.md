@@ -4,9 +4,45 @@
 
 - [spring](https://start.spring.io/#!type=gradle-project&language=java&platformVersion=3.2.6&packaging=jar&jvmVersion=17&groupId=cloud.crosstraining.devstore&artifactId=registry&name=registry&description=Demo%20project%20for%20Spring%20Boot&packageName=cloud.crosstraining.devstore.registry&dependencies=cloud-eureka-server,cloud-config-client)
 
-## Run
+## Gradle
 
-- [registry server](http://localhost:9102)
+**Build:**
+
+```shell
+./gradlew clean build
+```
+
+**Run:**
+
+```shell
+./gradlew bootRun
+```
+
+**Test:**
+
+- [registry server](http://localhost:8761)
+
+## Docker
+
+**Build:**
+
+```shell
+docker build -t flaviorita/devstore-discovery:0.0.8 .
+```
+
+**Run:**
+
+```shell
+docker run -p 8761:8761 --network=devstore_backend -e CONFIG_SERVICE_URI=http://config-server:9101 -e CONFIG_SERVICE_USERNAME=devstore -e CONFIG_SERVICE_PASSWORD=secr3t -e LOGGING_SERVICE_URI=http://tracing-server:9411 flaviorita/devstore-discovery:0.0.8
+```
+
+TODO: no me esta funcionando pero si desde docker-compose
+
+**Push:**
+
+```shell
+docker push flaviorita/devstore-config:0.0.8
+```
 
 ## References
 

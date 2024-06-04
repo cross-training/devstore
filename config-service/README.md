@@ -21,8 +21,28 @@
 **Test:**
 
 ```shell
-curl -u devstore:secr3t  http://localhost:9101/catalog/devc
-curl http://devstore:secr3t@localhost:9101/catalog/dev
+curl -u devstore:secr3t  http://localhost:8888/catalog-service/dev
+curl http://devstore:secr3t@localhost:8888/catalog-service/dev
+```
+
+## Docker
+
+**Build:**
+
+```shell
+docker build -t flaviorita/devstore-config:0.0.7 .
+```
+
+**Run:**
+
+```shell
+docker run -p 8888:8888 -e CONFIG_SERVICE_USERNAME=devstore -e CONFIG_SERVICE_PASSWORD=secr3t flaviorita/devstore-config:0.0.7
+```
+
+**Push:**
+
+```shell
+docker push flaviorita/devstore-config:0.0.7
 ```
 
 ## References

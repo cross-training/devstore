@@ -20,9 +20,14 @@ ext {
 }
 
 dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.cloud:spring-cloud-starter-config'
 	implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
+	implementation 'io.micrometer:micrometer-registry-prometheus'
+	runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
+	implementation 'io.micrometer:micrometer-tracing-bridge-brave'
+	implementation 'io.zipkin.reporter2:zipkin-reporter-brave'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
@@ -33,6 +38,23 @@ dependencyManagement {
 	}
 }
 
+bootJar {
+	archiveFileName = projectDir.absolutePath + '/app.jar'
+}
+
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+bootRun {
+	doFirst {
+		def envFileName = System.getenv("ENV_FILE") ?: '.env'
+		def envFile = file(envFileName)
+		if (envFile.exists()) {
+			envFile.eachLine { line ->
+				def (key, value) = line.split('=')
+				environment key, value
+			}
+		}
+	}
 }

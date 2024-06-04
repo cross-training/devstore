@@ -22,9 +22,13 @@ ext {
 }
 
 dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.cloud:spring-cloud-config-server'
-	// implementation 'org.jolokia:jolokia-core'
+	implementation 'io.micrometer:micrometer-registry-prometheus'
+	runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
+	implementation 'io.micrometer:micrometer-tracing-bridge-brave'
+	implementation 'io.zipkin.reporter2:zipkin-reporter-brave'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
@@ -37,6 +41,11 @@ dependencyManagement {
 	}
 }
 
+bootJar {
+	archiveFileName = projectDir.absolutePath + '/app.jar'
+}
+
+
 configurations {
     buildDocker
 }
@@ -45,4 +54,17 @@ task buildDocker(type: Exec) {
     group = 'Docker'
     description = 'Build Docker image'
     commandLine 'echo', 'Run your Docker build command here'
+}
+
+bootRun {
+	doFirst {
+		def envFileName = System.getenv("ENV_FILE") ?: '.env'
+		def envFile = file(envFileName)
+		if (envFile.exists()) {
+			envFile.eachLine { line ->
+				def (key, value) = line.split('=')
+				environment key, value
+			}
+		}
+	}
 }
