@@ -15,7 +15,7 @@
 **Run:**
 
 ```shell
-./gradlew bootRun
+./gradlew bootRun --args='--spring.profiles.active=local'
 ```
 
 **Test:**
@@ -24,16 +24,17 @@
 
 ## Docker
 
-**Build:**
+**Build & Push:**
 
 ```shell
-docker build -t flaviorita/devstore-discovery:0.0.8 .
+docker build -t flaviorita/devstore-discovery:0.0.9 .
+docker push flaviorita/devstore-discovery:0.0.9
 ```
 
 **Run:**
 
 ```shell
-docker run -p 8761:8761 --network=devstore_backend -e CONFIG_SERVICE_URI=http://config-server:9101 -e CONFIG_SERVICE_USERNAME=devstore -e CONFIG_SERVICE_PASSWORD=secr3t -e LOGGING_SERVICE_URI=http://tracing-server:9411 flaviorita/devstore-discovery:0.0.8
+docker run -p 8761:8080 -e SPRING_PROFILES_ACTIVE=docker --network=devstore_backend -e CONFIG_SERVICE_URI=http://config-server:9101 -e CONFIG_SERVICE_USERNAME=devstore -e CONFIG_SERVICE_PASSWORD=secr3t -e LOGGING_SERVICE_URI=http://tracing-server:9411 flaviorita/devstore-discovery:0.0.9
 ```
 
 TODO: no me esta funcionando pero si desde docker-compose
@@ -41,7 +42,7 @@ TODO: no me esta funcionando pero si desde docker-compose
 **Push:**
 
 ```shell
-docker push flaviorita/devstore-config:0.0.8
+
 ```
 
 ## References
