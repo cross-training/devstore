@@ -1,5 +1,4 @@
 server:
-  port: ${PORT:8888}
   bootstrap: true
 spring:
   application:
@@ -9,7 +8,7 @@ spring:
       server:
         git:
           uri: ${CONFIG_REPO_URI:https://github.com/cross-training/devstore-config.git}
-          search-paths: services
+          search-paths: ${CONFIG_SERVICE_PATHS:services}
           default-label: ${CONFIG_REPO_LABEL:main}  
   security:
     user:
