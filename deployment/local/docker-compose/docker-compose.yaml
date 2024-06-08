@@ -1,8 +1,11 @@
 version: "3"
 networks:
   backend:
+    driver: bridge
   frontend:
+    driver: bridge
 services:
+
   tracing-server:
     image: openzipkin/zipkin
     container_name: tracing-server
@@ -15,33 +18,35 @@ services:
       - frontend
 
   config-server:
-    image: flaviorita/devstore-config:0.0.7   
+    image: flaviorita/devstore-config:0.0.8   
     container_name: config-server
     restart: always
     environment:
-      - CONFIG_SERVICE_USERNAME=devstore
-      - CONFIG_SERVICE_PASSWORD=secr3t
-      - LOGGING_SERVICE_URI=http://tracing-server:9411      
+      SPRING_PROFILES_ACTIVE: docker
+      CONFIG_SERVICE_USERNAME: ${CONFIG_SERVICE_USERNAME}
+      CONFIG_SERVICE_PASSWORD: ${CONFIG_SERVICE_PASSWORD}
+      LOGGING_SERVICE_URI=: http://tracing-server:9411      
     healthcheck:
-      test: ["CMD", "curl", "-I", "http://localhost:8888/actuator/health"]
+      test: ["CMD", "curl", "-I", "http://localhost:8080/actuator/health"]
       interval: 5s
       timeout: 5s
       retries: 10
     ports:
-     - 8888:8888
+     - 8888:8080
     networks:
       - backend
   
   discovery-server:
-    image: flaviorita/devstore-discovery:0.0.8
+    image: flaviorita/devstore-discovery:0.0.9
     container_name: discovery-server
     environment:
-      - CONFIG_SERVICE_URI=http://config-server:8888
-      - CONFIG_SERVICE_USERNAME=devstore
-      - CONFIG_SERVICE_PASSWORD=secr3t
-      - LOGGING_SERVICE_URI=http://tracing-server:9411       
+      SPRING_PROFILES_ACTIVE: docker
+      CONFIG_SERVICE_URI: http://config-server:8888
+      CONFIG_SERVICE_USERNAME: ${CONFIG_SERVICE_USERNAME}
+      CONFIG_SERVICE_PASSWORD: ${CONFIG_SERVICE_PASSWORD}
+      LOGGING_SERVICE_URI: http://tracing-server:9411       
     healthcheck:
-      test: ["CMD", "curl", "-I", "http://localhost:8761/actuator/health"]
+      test: ["CMD", "curl", "-I", "http://localhost:8080/actuator/health"]
       interval: 5s
       timeout: 3s
       retries: 10
@@ -49,23 +54,24 @@ services:
       config-server:
         condition: service_healthy
     ports:
-     - 8761:8761
+     - 8761:8080
     networks:
       - backend
 
   api-gateway:
-    image: flaviorita/devstore-gateway:0.0.2
+    image: flaviorita/devstore-gateway:0.0.3
     container_name: api-gateway
     environment:
-      - CONFIG_SERVICE_URI=http://config-server:8888
-      - CONFIG_SERVICE_USERNAME=devstore
-      - CONFIG_SERVICE_PASSWORD=secr3t
-      - DISCOVERY_SERVICE_URI=http://discovery-server:8761/eureka/
-      - LOGGING_SERVICE_URI=http://tracing-server:9411       
+      SPRING_PROFILES_ACTIVE: docker
+      CONFIG_SERVICE_URI: http://config-server:8888
+      CONFIG_SERVICE_USERNAME: ${CONFIG_SERVICE_USERNAME}
+      CONFIG_SERVICE_PASSWORD: ${CONFIG_SERVICE_PASSWORD}
+      DISCOVERY_SERVICE_URI: http://discovery-server:8761/eureka/
+      LOGGING_SERVICE_URI: http://tracing-server:9411       
     healthcheck:
       test: ["CMD", "curl", "-I", "http://localhost:8080/actuator/health"]
       interval: 5s
-      timeout: 3s
+      timeout: 3ss
       retries: 10
     depends_on:
       config-server:
@@ -83,9 +89,9 @@ services:
     image: postgres:16-alpine
     restart: always
     environment:
-      - POSTGRES_DB=devstore    
-      - POSTGRES_USER=devstore
-      - POSTGRES_PASSWORD=devstore
+      - POSTGRES_DB=${DB_DATABASE}    
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
     ports:
       - 5432:5432  
     networks:
@@ -94,48 +100,82 @@ services:
       test: [ "CMD", "pg_isready", "-U", "devstore" ]
       interval: 3s
       timeout: 1s
-      retries: 10  
-  # backend:
-  #   depends_on:
-  #     - postgres
-  #   image: flaviorita/devstore/backend:0.0.4
-  #   restart: always
-  #   deploy:
-  #     replicas: 3
-  #     resources:        
-  #       limits:
-  #         cpus: '0.25'
-  #         memory: 1G
-  #       reservations:
-  #         cpus: '0.1'
-  #         memory: 500M    
-  #   environment:
-  #     DB_URL: jdbc:postgresql://postgres:5432/devstore
-  #     DB_USER: devstore
-  #     DB_PASSWORD: devstore
-  #   networks:
-  #     - frontend
-  #     - backend          
-  #   healthcheck:
-  #     test: curl --fail http://localhost:8080/actuator/health || exit 1
-  #     interval: 10s
-  #     retries: 3
-  #     start_period: 30s
-  #     timeout: 5s
-  # nginx:
-  #   depends_on:
-  #     - backend  
-  #   container_name: nginx
-  #   image: nginx:latest     
-  #   ports:
-  #     - 8081:8081
-  #   expose:
-  #     - 8081  
-  #   networks:
-  #     - backend
-  #     - frontend
-  #   volumes:
-  #     - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro        
+      retries: 10
+
+  catalog-service:
+    depends_on:
+      - postgres
+    image: flaviorita/devstore-catalog:0.0.1
+    restart: always
+    deploy:
+      replicas: 3
+      resources:        
+        limits:
+          cpus: '0.25'
+          memory: 1G
+        reservations:
+          cpus: '0.1'
+          memory: 500M    
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      CONFIG_SERVICE_URI: http://config-server:8888
+      CONFIG_SERVICE_USERNAME: ${CONFIG_SERVICE_USERNAME}
+      CONFIG_SERVICE_PASSWORD: ${CONFIG_SERVICE_PASSWORD}
+      DISCOVERY_SERVICE_URI: http://discovery-server:8761/eureka/
+      LOGGING_SERVICE_URI: http://tracing-server:9411 
+      DB_URL: jdbc:postgresql://postgres:5432/devstore
+      DB_USER: catalog
+      DB_PASSWORD: catalog
+      DB_SCHEMA: catalog  
+    ports:
+     - 9001:8080  
+    networks:
+      - frontend
+      - backend          
+    healthcheck:
+      test: curl --fail http://localhost:8080/actuator/health || exit 1
+      interval: 10s
+      retries: 3
+      start_period: 30s
+      timeout: 5s
+
+  rating-service:
+    depends_on:
+      - postgres
+    image: flaviorita/devstore-rating:0.0.1
+    restart: always
+    deploy:
+      replicas: 3
+      resources:        
+        limits:
+          cpus: '0.25'
+          memory: 1G
+        reservations:
+          cpus: '0.1'
+          memory: 500M    
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      CONFIG_SERVICE_URI: http://config-server:8888
+      CONFIG_SERVICE_USERNAME: ${CONFIG_SERVICE_USERNAME}
+      CONFIG_SERVICE_PASSWORD: ${CONFIG_SERVICE_PASSWORD}
+      DISCOVERY_SERVICE_URI: http://discovery-server:8761/eureka/
+      LOGGING_SERVICE_URI: http://tracing-server:9411 
+      DB_URL: jdbc:postgresql://postgres:5432/devstore
+      DB_USER: rating
+      DB_PASSWORD: rating
+      DB_SCHEMA: rating
+    ports:
+     - 9002:8080  
+    networks:
+      - frontend
+      - backend          
+    healthcheck:
+      test: curl --fail http://localhost:8080/actuator/health || exit 1
+      interval: 10s
+      retries: 3
+      start_period: 30s
+      timeout: 5s
+  
   prometheus:
     image: prom/prometheus:v2.20.1
     container_name: prometheus
@@ -148,6 +188,7 @@ services:
     networks:
       - backend
       - frontend
+  
   grafana:
     depends_on:
       - prometheus

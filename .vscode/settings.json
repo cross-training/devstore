@@ -7,6 +7,8 @@
         "datasource",
         "datasources",
         "devstore",
+        "dotenv",
+        "EOSQL",
         "flaviolrita",
         "flaviorita",
         "flot",
@@ -22,8 +24,10 @@
         "linewidth",
         "linux",
         "microservicios",
+        "Monitoreo",
         "netflix",
         "nginx",
+        "nspname",
         "percentunit",
         "pointradius",
         "postgres",
@@ -32,9 +36,11 @@
         "rgba",
         "secr",
         "springframework",
+        "usename",
         "xaxis",
         "yaxes",
         "Zipkin"
     ],
-    "java.configuration.updateBuildConfiguration": "disabled"
+    "java.configuration.updateBuildConfiguration": "disabled",
+    "CodeGPT.apiKey": "OpenAI"
 }

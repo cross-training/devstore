@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: transaction-reception-service
+  cloud:
+    config:
+      uri: ${CONFIG_SERVICE_URI}
+      username: ${CONFIG_SERVICE_USERNAME}
+      password: ${CONFIG_SERVICE_PASSWORD}
+      enabled: true
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    template:
+      default-topic: my-topic

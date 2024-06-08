@@ -1,21 +1,31 @@
 # Deploy local with Docker
 
+## Requirements
+
+```shell
+pip install python-dotenv
+```
+
 ## Start
 
 ### Up
 
 ```bash
+sudo kill -9 $(sudo lsof -t -i:5432)
+python3 init.py
 docker-compose -p devstore up -d
 ```
 
 Only:
 
 ```bash
+docker-compose -p devstore up -d postgres, tracing-server
+
 docker-compose -p devstore up -d tracing-server
 docker-compose -p devstore up -d config-server
 docker-compose -p devstore up -d discovery-server
 docker-compose -p devstore up -d api-gateway
-docker-compose -p devstore up -d postgres
+
 ```
 
 ### Endpoints
