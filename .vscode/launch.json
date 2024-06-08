@@ -9,7 +9,7 @@
       "type": "debugpy",
       "request": "launch",
       "cwd": "${workspaceFolder}/deployment/local/docker-compose/", 
-      "program": "${workspaceFolder}/deployment/local/docker-compose/infrastructure.py",
+      "program": "${workspaceFolder}/deployment/local/docker-compose/infra.py",
         "args": [
             "up"
         ],       

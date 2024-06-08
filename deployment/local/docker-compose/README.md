@@ -1,31 +1,21 @@
 # Deploy local with Docker
 
-## Requirements
+## Start
+
+**Requirements:**
 
 ```shell
 pip install python-dotenv
+sudo chown -R $USER:$USER grafana
+sudo chown -R $USER:$USER prometheus
+sudo chown -R $USER:$USER nginx   
 ```
 
-## Start
-
-### Up
+**Up:**
 
 ```bash
 sudo kill -9 $(sudo lsof -t -i:5432)
-python3 init.py
-docker-compose -p devstore up -d
-```
-
-Only:
-
-```bash
-docker-compose -p devstore up -d postgres, tracing-server
-
-docker-compose -p devstore up -d tracing-server
-docker-compose -p devstore up -d config-server
-docker-compose -p devstore up -d discovery-server
-docker-compose -p devstore up -d api-gateway
-
+python3 infra.py up
 ```
 
 ### Endpoints
@@ -46,26 +36,12 @@ docker-compose -p devstore up -d api-gateway
 
 ## End
 
-### Down
+**Down:**
 
 ```bash
-docker-compose -p devstore down
+python3 infra.py down
 ```
 
 ## References
-
-Kill process in 5432 port
-
-```shell
-sudo kill -9 $(sudo lsof -t -i:5432)
-```
-
-Set folder permissions
-
-```shell
-sudo chown -R $USER:$USER grafana
-sudo chown -R $USER:$USER prometheus
-sudo chown -R $USER:$USER nginx   
-```
 
 - [grafana-dashboard](https://github.com/codecentric/spring-boot-monitoring-sample/blob/master/grafana/grafana-dashboard.json)
