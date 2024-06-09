@@ -33,11 +33,14 @@
   - Helm:
 - Spring boot 3.2.6
 - Services:
-  - spring cloud:
-    - [Config Server](./services/spring-cloud/config-server/README.md)
-    - Discovery Service:
-      - [Eureka Server](./services/spring-cloud/eureka-server/README.md)
-    - [Gateway](./services/spring-cloud/gateway/README.md)
+  - Infrastructure:
+    - [Discovery Server](./services/discovery-service/README.md): Para el registrar y descubrir los servicios
+    - [Config Server](./services/config-service/README.md): Para la configuración de los servicios
+    - [Load Balancer](./services/load-balancer/README.md): Para el balanceo de carga
+    - [Circuit Breaker](./services/circuit-breaker/README.md): Para la tolerancia a fallos
+    - [Api Gateway](./services/gateway-service/README.md): Para la seguridad y el enrutamiento
+    - [Log Center](./services/log-center/README.md): Para el Monitoreo de los servicios
+
   - Database
     - [PostgreSQL](./services/database/postgresql/README.md)
   - Frontend
@@ -89,6 +92,6 @@
 
 - [Spring Cloud Kubernetes](https://docs.spring.io/spring-cloud-kubernetes/reference/getting-started.html)
   - Description:
-  - Dependence: spring-cloud-starter-kubernetes-config
+  - Dependence: spring-cloud-starter-Kubernetes-config
   - [tutorial](https://refactorizando.com/microservicios-spring-cloud-kubernetes/)
   - [Externalizar la configuración de Spring Boot en Kubernetes con ConfigMap](https://refactorizando.com/externalizar-configuracion-spring-boot-kubernetes-configmap/)

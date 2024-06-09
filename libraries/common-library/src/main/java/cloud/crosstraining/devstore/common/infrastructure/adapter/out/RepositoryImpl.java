@@ -104,7 +104,7 @@ public abstract class RepositoryImpl<ENTITY extends Entity<ID>, ID, JAP_ENTITY> 
         return entities.stream().map(p-> toDomain(p)).toList();
     }
 
-    protected abstract ENTITY toDomain(JAP_ENTITY japEntity);
-    protected abstract JAP_ENTITY toEntity(ENTITY entity);
+    protected abstract ENTITY toDomain(JAP_ENTITY entity);
+    protected abstract JAP_ENTITY toEntity(ENTITY domain);
     protected abstract Class<JAP_ENTITY> classEntity();
 }

@@ -13,5 +13,5 @@ scrape_configs:
         - config-server:8888
         - discovery-server:8761
         - api-gateway:8080
-        - catalog-server:9001
-        - rating-service:9002
+        # - catalog-server:9001
+        # - rating-service:9002

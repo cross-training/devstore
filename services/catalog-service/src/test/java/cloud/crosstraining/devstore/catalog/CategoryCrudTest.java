@@ -1,6 +1,6 @@
 package cloud.crosstraining.devstore.catalog;
 import cloud.crosstraining.devstore.catalog.application.port.out.CategoryRepository;
-import cloud.crosstraining.devstore.catalog.application.service.CategoryServiceImpl;
+import cloud.crosstraining.devstore.catalog.application.service.CategoryService;
 import cloud.crosstraining.devstore.catalog.domain.Category;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,7 +21,7 @@ class CategoryCrudTest {
 	private CategoryRepository categoryRepository;
 
 	@InjectMocks
-	private CategoryServiceImpl service;
+	private CategoryService service;
 
 	@Test
 	public void testCrud() {

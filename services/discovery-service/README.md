@@ -48,3 +48,4 @@ TODO: no me esta funcionando pero si desde docker-compose
 ## References
 
 - [tutorial](https://www.youtube.com/watch?v=lJ3-VPzhrFY&list=PLxy6jHplP3Hi_W8iuYSbAeeMfaTZt49PW&index=13)
+- [Eureka](https://spring.io/guides/gs/service-registration-and-discovery/)

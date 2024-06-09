@@ -1,6 +1,6 @@
 package cloud.crosstraining.devstore.common.infrastructure.adapter.in;
 
-import cloud.crosstraining.devstore.common.application.port.in.Service;
+import cloud.crosstraining.devstore.common.application.service.Service;
 import cloud.crosstraining.devstore.common.domain.Entity;
 import cloud.crosstraining.devstore.common.domain.ErrorMessage;
 import cloud.crosstraining.devstore.common.domain.FindAllArgs;
@@ -46,22 +46,39 @@ public abstract class Controller<ENTITY extends  Entity<ID>,ID> {
 
     @PostMapping
     public Mono<ENTITY> create(@Valid @RequestBody ENTITY entity, BindingResult result) {
-        log.info("Creating: {}", entity);
+        log.info("Creating: {}", result);
         if (result.hasErrors()){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, this.formatMessage(result));
+            String errorMessage = this.formatMessage(entity.getClass().getCanonicalName(), result);
+            log.error(errorMessage);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,errorMessage );
         }
         return service.create(entity);
     }
 
     @PostMapping("/bulk")
-    public Flux<ENTITY> bulkInsert(@RequestBody List<ENTITY> entities) {
+    public Flux<ENTITY> bulkInsert(@Valid @RequestBody List<ENTITY> entities, BindingResult result ) {
+        if (entities == null || entities.size() == 0) {
+            String errorMessage = "entities can't empty";
+            log.error(errorMessage);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,errorMessage);
+        }
         log.info("Bulk Creating: {}", entities);
+        if (result.hasErrors()){
+            String errorMessage = this.formatMessage(entities.stream().findFirst().getClass().getCanonicalName(), result);
+            log.error(errorMessage);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,errorMessage );
+        }
         return service.bulkInsert(entities);
     }
 
     @PutMapping("/{id}")
-    public Mono<ENTITY> update(@PathVariable ID id, @RequestBody ENTITY entity) {
+    public Mono<ENTITY> update(@PathVariable ID id, @Valid @RequestBody ENTITY entity, BindingResult result) {
         log.info("Update {}", entity);
+        if (result.hasErrors()){
+            String errorMessage = this.formatMessage(entity.getClass().getCanonicalName(), result);
+            log.error(errorMessage);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,errorMessage );
+        }
         return service.update(id, entity);
     }
 
@@ -77,7 +94,7 @@ public abstract class Controller<ENTITY extends  Entity<ID>,ID> {
         service.deleteById(id);
     }
 
-    private String formatMessage( BindingResult result){
+    private String formatMessage(String code,BindingResult result){
         List<Map<String,String>> errors = result.getFieldErrors().stream()
                 .map(err ->{
                     Map<String,String>  error =  new HashMap<>();
@@ -86,7 +103,7 @@ public abstract class Controller<ENTITY extends  Entity<ID>,ID> {
 
                 }).collect(Collectors.toList());
         ErrorMessage errorMessage = ErrorMessage.builder()
-                .code("01")
+                .code(code)
                 .messages(errors).build();
         ObjectMapper mapper = new ObjectMapper();
         String jsonString="";
