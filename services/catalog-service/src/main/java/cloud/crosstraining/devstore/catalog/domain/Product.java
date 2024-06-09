@@ -1,9 +1,6 @@
 package cloud.crosstraining.devstore.catalog.domain;
 import cloud.crosstraining.devstore.common.domain.Entity;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.*;
 
 import java.io.Serializable;
@@ -27,7 +24,11 @@ public class Product implements Entity<Long>, Serializable {
     private Double stock;
     @Size( max = 255, message = "name exceeds 255 characters")
     private String url;
-    private Double reviews;
+    @Positive(message= "reviews can't negative or zero")
+    private Long reviews;
+    @Min(value=0, message = "rating can't minor that 0")
+    @Max(value=5, message = "rating can't major that 5")
+    private Double rating;
     @Size( max = 255, message = "imageUrl exceeds 255 characters")
     private String imageUrl;
     private Date createAt;

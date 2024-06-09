@@ -14,9 +14,10 @@ CREATE TABLE tbl_products (
     description TEXT,
     price DECIMAL(10, 2) NOT NULL,
     stock INT NOT NULL,
-    review DECIMAL(2, 1),
+    reviews INT NOT NULL,
+    rating DECIMAL(2, 1),
     url VARCHAR(255),
     image_url VARCHAR(255),
-    create_at TIMESTAMP;
+    create_at TIMESTAMP,
     UNIQUE (name)
 );

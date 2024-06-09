@@ -6,6 +6,7 @@ import cloud.crosstraining.devstore.common.application.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
+@org.springframework.stereotype.Service
 public class CategoryService extends Service<Category,String> {
 
     @Autowired

@@ -23,6 +23,7 @@ public class ProductEntity  {
     private Double price;
     private String description;
     private Double stock;
+    private Long rating;
     private Double review;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
