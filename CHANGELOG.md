@@ -2,12 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## 1.1.0 (2024-06-11)
+### [1.1.1](https://github.com/cross-training/devstore/compare/v1.1.0...v1.1.1) (2024-06-11)
 
+## 1.1.0 (2024-06-11)
 
 ### Features
 
-* add adjustStock and raing ([6d50c30](https://github.com/cross-training/devstore/commit/6d50c305792f3b6f0a2ea3235f53c0495ea83ce3)), closes [#2](https://github.com/cross-training/devstore/issues/2)
+* add adjustStock and rating ([6d50c30](https://github.com/cross-training/devstore/commit/6d50c305792f3b6f0a2ea3235f53c0495ea83ce3)), closes [#2](https://github.com/cross-training/devstore/issues/2)
 * add backend ([4133536](https://github.com/cross-training/devstore/commit/413353689b0e6967818161e7c97f979fdbe46be7)), closes [#1](https://github.com/cross-training/devstore/issues/1)
 * add catalog service dev config ([c0a89c0](https://github.com/cross-training/devstore/commit/c0a89c0e8eb8d4f34c23368444624070e86c021e)), closes [#2](https://github.com/cross-training/devstore/issues/2)
 * add config service ([48fc736](https://github.com/cross-training/devstore/commit/48fc736a85a9c4aeec150e56f50a604971f2bd20)), closes [#0](https://github.com/cross-training/devstore/issues/0)
@@ -33,7 +34,6 @@ All notable changes to this project will be documented in this file. See [standa
 * translations using react-i18next ([9493385](https://github.com/cross-training/devstore/commit/94933854e48c6a34c98410d64a3c2484780d4b0e)), closes [#1](https://github.com/cross-training/devstore/issues/1)
 * update config ([7a2dbeb](https://github.com/cross-training/devstore/commit/7a2dbebba8042b1fb2ccc562d54c2638e489c5cb)), closes [#2](https://github.com/cross-training/devstore/issues/2)
 * update readme ([8f7a2d1](https://github.com/cross-training/devstore/commit/8f7a2d175dc04631cf2d7ee1f4811afa298e2717)), closes [#2](https://github.com/cross-training/devstore/issues/2)
-
 
 ### Bug Fixes
 
