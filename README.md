@@ -21,6 +21,18 @@
 - [retos de programación](https://retosdeprogramacion.com/proyectos/)
 - [example](https://github.com/sguerra/devarmor)
 
+## Tasks
+
+**prerequisites:**
+
+```shell
+gem install rake git
+```
+
+| Task      | Description                                 | Command               |
+|-----------|---------------------------------------------|-----------------------|
+| Release   | Create a new release                        | `ruby script.rb`      |
+
 ## Infrastructure
 
 - Tools:
