@@ -41,7 +41,7 @@ task :create_release do
   git.push('origin', 'main')
   git.checkout(current_branch)
   git.branch('release').delete
-  # git.push('origin', ":release")
+  git.push("origin", ":release")
 end
 
 task release: [:tests, :create_version, :create_release]
