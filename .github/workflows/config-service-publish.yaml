@@ -3,8 +3,7 @@ name: Build and Dockerize Config Service
 on:
   push:
     branches:
-      - release
-      - main
+      - develop
     paths:
       - 'services/config-service/**'
 
