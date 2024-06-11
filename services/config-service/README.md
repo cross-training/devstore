@@ -15,7 +15,7 @@
 **Run:**
 
 ```shell
-./gradlew bootRun --args='--spring.profiles.active=local'
+./gradlew bootRun
 ```
 
 **Test:**
@@ -30,14 +30,14 @@ curl http://devstore:secr3t@localhost:8888/catalog-service/local
 **Build & Push:**
 
 ```shell
-docker build -t flaviorita/devstore-config:0.0.8 .
-docker push flaviorita/devstore-config:0.0.8
+docker build -t flaviorita/devstore-config:0.0.10 .
+docker push flaviorita/devstore-config:0.0.10
 ```
 
 **Run:**
 
 ```shell
-docker run -p 8888:8080 -e SPRING_PROFILES_ACTIVE=docker -e CONFIG_SERVICE_USERNAME=devstore -e CONFIG_SERVICE_PASSWORD=secr3t flaviorita/devstore-config:0.0.8
+docker run -p 8888:8080 -e CONFIG_SERVICE_USERNAME=devstore -e CONFIG_SERVICE_PASSWORD=secr3t flaviorita/devstore-config:0.0.10
 ```
 
 ## References

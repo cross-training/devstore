@@ -1,33 +1,16 @@
 server:
-  bootstrap: true
+  port: ${PORT:8888}
 spring:
   application:
-    name: config
+    name: config-server
   cloud:
     config:
       server:
         git:
-          uri: ${CONFIG_REPO_URI:https://github.com/cross-training/devstore-config.git}
-          search-paths: ${CONFIG_SERVICE_PATHS:services}
-          default-label: ${CONFIG_REPO_LABEL:main}  
-  security:
+          uri: ${CONFIG_SERVICE_REPO_URI}
+          search-paths: ${CONFIG_SERVICE_REPO_PATHS}
+          default-label: ${CONFIG_SERVICE_REPO_LABEL}  
+  security:    
     user:
       name: ${CONFIG_SERVICE_USERNAME}
       password: ${CONFIG_SERVICE_PASSWORD}
-  management:
-    endpoints:
-      web:
-        exposure:
-          include: "health,prometheus,info"
-    endpoint:
-      health:
-        show-details: always
-  info:
-    app:
-      name: Dev Store Config Service
-      description: This is config service for Dev Store
-      version: 1.0.0
-    company:
-      name: Cross Training
-      department: IT
-         

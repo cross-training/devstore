@@ -78,7 +78,8 @@ def execute_db_script(script):
 def flyway_migrate(cwd,url,user,password,schema):
     """Execute the Flyway migration."""
     command= f'''flyway -url={url} -user={user} -password={password} -schemas={schema} -locations=filesystem:./sql migrate'''
-    run_command(command, cwd) 
+    run_command(command, cwd)
+    # flyway -url=jdbc:postgresql://localhost:5432/devstore -user=catalog -password=catalog -schemas=catalog -locations=filesystem:./sql migrate
 
 def up_database():
     """Start the Docker Compose infrastructure."""   
@@ -107,24 +108,24 @@ def up_database():
     flyway_migrate(os.path.join(services_path, "catalog-service/src/main/resources/db"),db_url,catalog_db_user,catalog_db_password,catalog_db_schema)
     flyway_migrate(os.path.join(services_path, "rating-service/src/main/resources/db"),db_url,rating_db_user,rating_db_password,rating_db_schema)
 
-def up_infrastructure_services():
+def up_services():
     """Start the Docker Compose infrastructure services."""
     print("Starting Infrastructures Services...")
-    run_command('docker-compose -p devstore up -d tracing-server config-server discovery-server api-gateway')
+    run_command('docker-compose -p devstore up')
 
-def up_business_services():
-    """Start the business services."""
-    print("Starting Business Services...")
-    run_command('docker-compose -p devstore up -d catalog-service rating-service')
+# def up_business_services():
+#     """Start the business services."""
+#     print("Starting Business Services...")
+#     run_command('docker-compose -p devstore up -d catalog-service rating-service')
 
-def up_monitoring_services():
-    """Start the monitoring services."""
-    print("Starting Monitoring Services...")
-    run_command('docker-compose -p devstore up -d prometheus grafana')
+# def up_monitoring_services():
+#     """Start the monitoring services."""
+#     print("Starting Monitoring Services...")
+#     run_command('docker-compose -p devstore up -d prometheus grafana')
 
-def end_infrastructure():
-    """Stop the Docker Compose infrastructure."""
-    print("Stopping Database...")
+def end_services():
+    """Stop the Docker Compose."""
+    print("Stop services...")
     run_command('docker-compose -p devstore down')
 
 def main(action):
@@ -134,11 +135,11 @@ def main(action):
             validate_environment_variables()
             register_environment_variables()
             up_database()
-            up_infrastructure_services()
+            up_services()
             # up_business_services()
-            up_monitoring_services()
+            # up_monitoring_services()
         elif action == 'down':
-            end_infrastructure()
+            end_services()
         else:
             print("Unrecognized action. It should be 'up' or 'down'.")
     except subprocess.CalledProcessError as e:

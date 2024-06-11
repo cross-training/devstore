@@ -1,12 +1,15 @@
 {
     "cSpell.words": [
         "ansible",
+        "buildx",
+        "Buildx",
         "commandline",
         "configserver",
         "crosstraining",
         "datasource",
         "datasources",
         "devstore",
+        "Djar",
         "dotenv",
         "enrutamiento",
         "EOSQL",
@@ -35,6 +38,7 @@
         "postgres",
         "postgresql",
         "prometheus",
+        "Pversion",
         "rgba",
         "secr",
         "springframework",

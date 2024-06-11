@@ -49,14 +49,16 @@ java -jar app.jar
 **Docker build & push:**
 
 ```shell
-docker build -t flaviorita/devstore-catalog:0.0.2 .
-docker push flaviorita/devstore-catalog:0.0.2
+docker build -t flaviorita/devstore-catalog:0.0.3 .
+docker push flaviorita/devstore-catalog:0.0.3
+
+curl http://devstore:secr3t@0.0.0.0:8888/catalog-service/docker
 ```
 
 **Docker run:**
 
 ```shell
-docker run --network=devstore_backend -p 9001:8080 -e SPRING_PROFILES_ACTIVE=local -e CONFIG_SERVICE_URI=http://config:8888 -e CONFIG_SERVICE_USERNAME=devstore -e CONFIG_SERVICE_PASSWORD=secr3t -e DISCOVERY_SERVICE_URI=http://discovery:8761/eureka -e LOGGING_SERVICE_URI=http://zipkin:9411 -e DB_URL=jdbc:postgresql://postgres:5432/devstore -e DB_USER=catalog -e DB_PASSWORD=catalog -e DB_SCHEMA=catalog flaviorita/devstore-catalog:0.0.1
+docker run --network=devstore_backend -p 9001:8080 -e SPRING_PROFILES_ACTIVE=local -e CONFIG_SERVICE_URI=http://config:8888 -e CONFIG_SERVICE_USERNAME=devstore -e CONFIG_SERVICE_PASSWORD=secr3t -e DISCOVERY_SERVICE_URI=http://discovery:8761/eureka -e LOGGING_SERVICE_URI=http://zipkin:9411 -e DB_URL=jdbc:postgresql://postgres:5432/devstore -e DB_USER=catalog -e DB_PASSWORD=catalog -e DB_SCHEMA=catalog flaviorita/devstore-catalog:0.0.3
 ```
 
 Observations:
