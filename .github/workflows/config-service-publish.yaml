@@ -5,7 +5,7 @@ on:
     branches:
       - release
     paths:
-      - 'services/config-service/src/**'
+      - 'services/config-service/**'
 
 jobs:
   build:
