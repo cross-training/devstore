@@ -25,7 +25,12 @@ task :create_release do
   git.commit("chore: release #{version}\n\n#0")  
   git.push('origin', current_branch)
 
-  git.branch('release').checkout
+
+  if git.branches.local.any? { |branch| branch.name == 'release' }
+    git.branch('release').checkout
+  else
+    git.branch('release').create
+  end
   git.push('origin', 'release')
   git.checkout('main')
   git.merge('release')
