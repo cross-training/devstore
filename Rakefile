@@ -21,7 +21,7 @@ task :create_release do
   git = Git.open('.')  
   current_branch = git.current_branch
   version = get_version
-  git.add(:all => true)
+  git.add(all: true)
   git.commit("chore: release #{version}\n\n#0")  
   git.push('origin', current_branch)
 

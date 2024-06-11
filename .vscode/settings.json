@@ -4,6 +4,7 @@
         "buildx",
         "Buildx",
         "commandline",
+        "commitlint",
         "configserver",
         "crosstraining",
         "datasource",
