@@ -31,7 +31,11 @@ task :create_release do
   else
     git.branch('release').create
   end
-  git.push('origin', 'release')
+  if git.branches.remote.any? { |branch| branch.name == 'origin/release' }
+    git.push('origin', 'release')
+  else
+    git.push('origin', 'HEAD:release')
+  end
   git.checkout('main')
   git.merge('release')
   git.push('origin', 'main')
