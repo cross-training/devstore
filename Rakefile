@@ -1,5 +1,6 @@
 require 'git'
 require 'rake'
+require 'json'
 
 task :tests do
   sh "cd services/catalog-service && ./gradlew test"
@@ -10,22 +11,28 @@ task :create_version do
   system("standard-version")
 end
 
+def get_version
+  JSON.parse(File.read('package.json'))['version']
+end
+
+
 task :create_release do
   # Create a new release branch and push it to the remote repository 
   git = Git.open('.')  
   current_branch = git.current_branch
+  version = get_version
   git.add(:all => true)
-  git.commit("chore: release #{`cat package.json | jq -r .version`}\n\n#0")
-  git.add_tag("v#{`cat package.json | jq -r .version`}")
+  git.commit("chore: release #{version}\n\n#0")  
   git.push('origin', current_branch)
 
-  release_branch_name = "release/#{current_branch}"
-  git.branch(release_branch_name).checkout
-  git.push('origin', release_branch_name)
+  git.branch('release').checkout
+  git.push('origin', 'release')
   git.checkout('main')
-  git.merge(release_branch_name)
+  git.merge('release')
   git.push('origin', 'main')
   git.checkout(current_branch)
+  git.branch('release').delete
+  git.push('origin', ":release")
 end
 
 task release: [:tests, :create_version, :create_release]
