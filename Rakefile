@@ -3,7 +3,7 @@ require 'rake'
 require 'json'
 
 task :tests do
-  sh "cd services/catalog-service && ./gradlew test"
+  sh "cd services/catalog-service && gradle test"
 end
 
 task :create_version do
