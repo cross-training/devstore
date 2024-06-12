@@ -2,8 +2,9 @@ require 'git'
 require 'rake'
 require 'json'
 
-task :tests do
-  sh "cd services/catalog-service && gradle test"
+task :test do
+  sh "cd service/catalog && gradle test"
+  # sh "cd service/rating && gradle test"  
 end
 
 task :create_version do
@@ -53,5 +54,5 @@ MESSAGE
   git.push("origin", ":release")
 end
 
-task release: [:tests, :create_version, :create_release]
+task release: [:test, :create_version, :create_release]
 task default: []

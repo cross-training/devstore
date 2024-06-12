@@ -31,7 +31,8 @@ gem install rake git
 
 | Task      | Description                                 | Command               |
 |-----------|---------------------------------------------|-----------------------|
-| Release   | Create a new release                        | `ruby script.rb`      |
+| Test      | Run the tests                               | `rake test`           |
+| Release   | Create a new release                        | `rake release`        |
 
 ## Infrastructure
 
