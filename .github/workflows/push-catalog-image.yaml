@@ -44,5 +44,5 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/catalog:${{ steps.read-version.outputs.version }} ./service/catalog
-        docker push ${{ secrets.DOCKER_USERNAME }}/catalog:${{ steps.read-version.outputs.version }}
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/devstore-catalog:${{ steps.read-version.outputs.version }} ./service/catalog
+        docker push ${{ secrets.DOCKER_USERNAME }}/devstore-catalog:${{ steps.read-version.outputs.version }}
