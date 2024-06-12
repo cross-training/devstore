@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.20](https://github.com/cross-training/devstore/compare/v1.1.19...v1.1.20) (2024-06-12)
+
+
+### Bug Fixes
+
+* update publish workflow ([42cfa7c](https://github.com/cross-training/devstore/commit/42cfa7cb1edc86af20ebe09cde8eda796a2b6daf)), closes [#0](https://github.com/cross-training/devstore/issues/0)
+* update publish workflow ([e696b57](https://github.com/cross-training/devstore/commit/e696b5797ef1579c0175ee1e668eabee6e0f714d)), closes [#0](https://github.com/cross-training/devstore/issues/0)
+
 ### [1.1.19](https://github.com/cross-training/devstore/compare/v1.1.18...v1.1.19) (2024-06-11)
 
 ### [1.1.18](https://github.com/cross-training/devstore/compare/v1.1.17...v1.1.18) (2024-06-11)
