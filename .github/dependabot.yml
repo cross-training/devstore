@@ -1,7 +1,12 @@
 version: 2
 updates:
-  - package-ecosystem: gradle
-    target-branch: develop
-    directory: "/services/config-service"
+  - directory: /service/rating
+    package-ecosystem: gradle
+    target-branch: develop    
+    schedule:
+      interval: weekly
+  - directory: /service/catalog
+    package-ecosystem: gradle
+    target-branch: develop    
     schedule:
       interval: weekly

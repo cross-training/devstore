@@ -5,13 +5,25 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "docker infrastructure up",
+      "name": "docker up",
       "type": "debugpy",
       "request": "launch",
       "cwd": "${workspaceFolder}/deployment/local/docker-compose/", 
       "program": "${workspaceFolder}/deployment/local/docker-compose/infra.py",
         "args": [
             "up"
+        ],       
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "docker up postgres,config,discovery,gateway",
+      "type": "debugpy",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/deployment/local/docker-compose/", 
+      "program": "${workspaceFolder}/deployment/local/docker-compose/infra.py",
+        "args": [
+            "up",
+            "postgres,config,discovery,gateway"
         ],       
       "console": "integratedTerminal"
     }

@@ -50,10 +50,12 @@ dependencies {
 	implementation 'io.zipkin.reporter2:zipkin-reporter-brave'
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
-//	implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
+	implementation 'org.springframework.cloud:spring-cloud-starter-zipkin:2.2.8.RELEASE'
+	// implementation 'org.springframework.cloud:spring-cloud-starter-sleuth:3.1.11'
 //	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
 //	implementation (group: 'org.springframework.cloud', name: 'spring-cloud-netflix-hystrix-dashboard', version: '2.2.2.RELEASE')
 	implementation files('../../library/common/cloud.crosstraining.devstore.common-1.0.1.jar')
+	implementation 'io.micrometer:micrometer-tracing-bridge-brave'
 	implementation 'io.micrometer:micrometer-registry-prometheus'
 	implementation 'org.mapstruct:mapstruct:1.5.3.Final'
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'

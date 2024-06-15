@@ -1,0 +1,17 @@
+global:
+  scrape_interval:     15s
+  evaluation_interval: 15s
+scrape_configs:
+  - job_name: prometheus
+    static_configs:
+      - targets: ['prometheus:9090']
+  - job_name: spring-boot-services
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets:
+        - tracing:9411 
+        - config:8888
+        - discovery:8761
+        - gateway:8080
+        # - catalog:9001
+        # - rating:9002

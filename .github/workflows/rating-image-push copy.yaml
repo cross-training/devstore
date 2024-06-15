@@ -1,14 +1,14 @@
-name: Push catalog image
+name: Rating service image push
 
 on:
   push:
     branches:
       - develop
     paths:
-      - 'service/catalog/**'
+      - 'service/rating/**'
 
 jobs:
-  catalog-image-push:
+  rating-service-image-push:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,7 +17,7 @@ jobs:
 
     - name: Read version from file
       id: read-version
-      run: echo "::set-output name=version::$(cat service/catalog/version)"
+      run: echo "::set-output name=version::$(cat service/rating/version)"
 
     - name: Set up JDK 17
       uses: actions/setup-java@v2
@@ -26,11 +26,11 @@ jobs:
         java-version: '17'
 
     - name: Grant execute permission for gradlew
-      run: chmod +x service/catalog/gradlew
+      run: chmod +x service/rating/gradlew
 
     - name: Build with Gradle
       run: |
-        cd service/catalog
+        cd service/rating
         gradle clean build
 
     - name: Set up Docker Buildx
@@ -44,5 +44,5 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/devstore-catalog:${{ steps.read-version.outputs.version }} ./service/catalog
-        docker push ${{ secrets.DOCKER_USERNAME }}/devstore-catalog:${{ steps.read-version.outputs.version }}
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/devstore-rating:${{ steps.read-version.outputs.version }} ./service/rating
+        docker push ${{ secrets.DOCKER_USERNAME }}/devstore-rating:${{ steps.read-version.outputs.version }}
