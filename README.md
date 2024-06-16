@@ -47,12 +47,12 @@ gem install rake git
 - Spring boot 3.2.6
 - Services:
   - Infrastructure:
-    - [Discovery Server](./services/discovery-service/README.md): Para el registrar y descubrir los servicios
-    - [Config Server](./services/config-service/README.md): Para la configuración de los servicios
-    - [Load Balancer](./services/load-balancer/README.md): Para el balanceo de carga
-    - [Circuit Breaker](./services/circuit-breaker/README.md): Para la tolerancia a fallos
-    - [Api Gateway](./services/gateway-service/README.md): Para la seguridad y el enrutamiento
-    - [Log Center](./services/log-center/README.md): Para el Monitoreo de los servicios
+    - [Discovery service](./services/discovery-service/README.md): Para el registrar y descubrir los servicios
+    - [Config server](./services/config-service/README.md): Para la configuración de los servicios
+    - [Load balancer](./services/load-balancer/README.md): Para el balanceo de carga
+    - [Circuit breaker](./services/circuit-breaker/README.md): Para la tolerancia a fallos
+    - [Api gateway](./services/gateway-service/README.md): Para la seguridad y el enrutamiento
+    - [Log center](./services/log-center/README.md): Para el Monitoreo de los servicios
 
   - Database
     - [PostgreSQL](./services/database/postgresql/README.md)
@@ -78,6 +78,18 @@ gem install rake git
     - Azure
 - CI/CD:
   - [GitHub Actions](./.github/workflows/README.md)
+
+## TODO
+
+### FrontEnd
+
+- [react project with vite](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-react-project-with-vite)
+
+### Domain
+
+Posible: crosstraining.cloud
+
+- [hostinger](https://www.hostinger.es/comprar-dominio?ppc_campaign=google_search_generic_domains&bidkw=dominio&lo=9181130&gad_source=1&gclid=Cj0KCQjw3ZayBhDRARIsAPWzx8oHvxixBloD5ERDyg5tAhwpiOi0rwNGqXvLgF3flgajkcDIZEk12g4aAr5dEALw_wcB)
 
 ## References
 

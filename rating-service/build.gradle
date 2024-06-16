@@ -1,0 +1,10 @@
+apply plugin: 'org.springframework.boot'
+group = 'cloud.crosstraining.devstore.rating'
+
+dependencies {	
+	implementation files('../library/cloud.crosstraining.devstore.common-1.0.0.jar')
+}
+
+bootJar {
+    dependsOn(":common-library:jar")
+}

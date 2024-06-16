@@ -1,0 +1,20 @@
+apply plugin: 'org.springframework.boot'
+group = 'cloud.crosstraining.devstore.commons'
+
+dependencies {	
+	// compileOnly 'org.projectlombok:lombok'
+    // annotationProcessor 'org.projectlombok:lombok'	
+}
+
+bootJar {
+	enabled = false
+}
+
+jar {
+	archiveBaseName.set('cloud.crosstraining.devstore.common')
+	archiveVersion.set('1.0.0')
+	archiveClassifier.set('')
+	destinationDirectory.set(file("$projectDir"))
+	from sourceSets.main.output
+}
+

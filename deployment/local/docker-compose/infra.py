@@ -104,18 +104,17 @@ def up_postgres():
     print("Creating initial DDL and DML ...")
     current_dir = os.path.dirname(os.path.abspath(__file__))
     three_levels_up = os.path.dirname(os.path.dirname(os.path.dirname(current_dir)))
-    services_path = os.path.join(three_levels_up, 'service')
-    flyway_migrate(os.path.join(services_path, "catalog/src/main/resources/db"),db_url,catalog_db_user,catalog_db_password,catalog_db_schema)
-    flyway_migrate(os.path.join(services_path, "rating/src/main/resources/db"),db_url,rating_db_user,rating_db_password,rating_db_schema)
+    flyway_migrate(os.path.join(three_levels_up, "catalog-service/src/main/resources/db"),db_url,catalog_db_user,catalog_db_password,catalog_db_schema)
+    flyway_migrate(os.path.join(three_levels_up, "rating-service/src/main/resources/db"),db_url,rating_db_user,rating_db_password,rating_db_schema)
 
 def up_services(services:list[str]):
     """Start the Docker Compose infrastructure services."""
     if not services or len(services) == 0:
         print("Starting Infrastructures Services...")
         run_command('docker-compose -p devstore up -d')
-    else : 
+    else :
         services_str = ' '.join(services)
-        print(f"Starting Infrastructures ${services_str} Services...") 
+        print(f"Starting Infrastructures ${services_str} Services...")
         run_command('docker-compose -p devstore up -d ' + services_str)
 
 def down_services(services:list[str]):
@@ -155,6 +154,6 @@ def main(action:str, services: list[str]):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Sample script')
     parser.add_argument('action', choices=['up', 'down'], help="Action to perform ('up' or 'down')")
-    parser.add_argument('services', help="Comma-separated list of services")
+    parser.add_argument('--services', type=str, help="Comma-separated list of services")
     args = parser.parse_args()
-    main(args.action, args.services.split(','))
+    main(args.action, args.services.split(',') if args.services is not None else [] )

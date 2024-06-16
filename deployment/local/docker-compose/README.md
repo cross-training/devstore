@@ -21,10 +21,10 @@ python3 infra.py up
 **Up partials:**
 
 ```bash
-python3 infra.py up config
-python3 infra.py up discovery
-python3 infra.py up postgres,config,discovery,gateway
-python3 infra.py up catalog
+python3 infra.py up --services config
+python3 infra.py up --services discovery
+python3 infra.py up --services postgres,config,discovery,gateway
+python3 infra.py up --services catalog
 ```
 
 ### Endpoints

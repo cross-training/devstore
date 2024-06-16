@@ -1,0 +1,26 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+    }
+}
+
+plugins {
+    id 'com.gradle.develocity' version '3.17.4'
+    id 'io.spring.ge.conventions' version '0.0.17'
+}
+
+rootProject.name = 'crosstraining-devstore'
+
+include 'common-library'
+include 'catalog-service'
+include 'rating-service'
+// include 'product-service'
+// include 'recommendation-service'
+// include 'notification-service'
+// include 'shipping-service'
+// include 'inventory-service'
+// include 'shopping-cart-service'
+// include 'order-service'
+// include 'payment-service'
+// include 'customer-service'
+//include 'test-common'
