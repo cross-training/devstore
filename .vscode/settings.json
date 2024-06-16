@@ -33,6 +33,7 @@
         "linux",
         "microservicios",
         "Monitoreo",
+        "mybaggage",
         "netflix",
         "nginx",
         "nspname",
@@ -51,6 +52,7 @@
         "usename",
         "xaxis",
         "yaxes",
+        "zipkin",
         "Zipkin"
     ],
     "java.configuration.updateBuildConfiguration": "disabled",
