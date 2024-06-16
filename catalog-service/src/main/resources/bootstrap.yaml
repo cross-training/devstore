@@ -8,7 +8,9 @@ spring:
       uri: ${CONFIG_SERVICE_URI}
       username: ${CONFIG_SERVICE_USERNAME}
       password: ${CONFIG_SERVICE_PASSWORD}
-      enabled: true  
+      # TODO: It's not working when you grab the configuration from docker-compose
+      # because set enabled to false
+      enabled: false  
   datasource:
     platform: postgres
     driverClassName: org.postgresql.Driver
@@ -24,29 +26,29 @@ spring:
       hibernate:
         default_schema: catalog
         dialect: org.hibernate.dialect.PostgreSQLDialect
-#   zipkin:
-#     baseUrl: ${TRACE_SERVICE_URI} 
-# eureka:
-#   client:
-#     serviceUrl:
-#       defaultZone: ${DISCOVERY_SERVICE_URI}
-# management:
-#   endpoints:
-#     web:
-#       exposure:
-#         include: "health,info,prometheus"
-#   endpoint:
-#     health:
-#       show-details: always
-#   info:
-#     env:
-#       enabled: true
-# logging.pattern.level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-},%X{mybaggage:-}]"       
-# info:
-#   app:
-#     name: Dev Store Catalog
-#     description: This is catalog service for Dev Store
-#   company:
-#     name: Cross Training
-#     department: IT
+  zipkin:
+    baseUrl: ${TRACE_SERVICE_URI} 
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${DISCOVERY_SERVICE_URI}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info,prometheus"
+  endpoint:
+    health:
+      show-details: always
+  info:
+    env:
+      enabled: true
+logging.pattern.level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-},%X{mybaggage:-}]"       
+info:
+  app:
+    name: Dev Store Catalog
+    description: This is catalog service for Dev Store
+  company:
+    name: Cross Training
+    department: IT
   

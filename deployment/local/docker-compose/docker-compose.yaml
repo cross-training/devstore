@@ -107,7 +107,7 @@ services:
       - backend
 
   catalog:    
-    image: crosstraining/devstore-catalog:1.1.31
+    image: crosstraining/devstore-catalog:1.1.32
     container_name: catalog
     restart: always
     depends_on:
@@ -125,7 +125,7 @@ services:
       CONFIG_SERVICE_PASSWORD: ${CONFIG_SERVICE_PASSWORD}
       DISCOVERY_SERVICE_URI: http://discovery:8761/eureka/
       TRACE_SERVICE_URI: http://tracing:9411 
-      DB_URL: 'jdbc:postgresql://postgres:5432/devstore'
+      DB_URL: jdbc:postgresql://postgres:5432/devstore
       DB_USER: catalog
       DB_PASSWORD: catalog
       DB_SCHEMA: catalog  
