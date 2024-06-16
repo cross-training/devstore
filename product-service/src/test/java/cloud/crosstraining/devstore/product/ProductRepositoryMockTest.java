@@ -25,7 +25,7 @@ public class ProductRepositoryMockTest {
     @Test
     public void whenFindByCategory_ThenReturnListProducts(){
 
-        Category category01 = Category.builder().id(1L).name("Informatica") .build();
+        Category category01 = Category.builder().id(1L).name("Informatics") .build();
         Category category02 = Category.builder().id(2L).name("Electronics") .build();
         categoryRepository.save(category01);
         categoryRepository.save(category02);

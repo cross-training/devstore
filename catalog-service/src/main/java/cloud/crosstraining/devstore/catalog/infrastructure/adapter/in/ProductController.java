@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono;
 
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/catalog/products")
 public class ProductController extends Controller<Product, Long> {
 
     private final ProductService productService;

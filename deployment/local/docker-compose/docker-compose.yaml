@@ -107,7 +107,7 @@ services:
       - backend
 
   # catalog:    
-  #   image: flaviorita/devstore-catalog:0.0.3
+  #   image: crosstraining/devstore-catalog:1.1.28
   #   container_name: catalog
   #   restart: always
   #   depends_on:
@@ -141,7 +141,7 @@ services:
   #     timeout: 5s
 
   # rating:
-  #   image: flaviorita/devstore-rating:0.0.1
+  #   image: crosstraining/devstore-rating:1.1.28
   #   restart: always
   #   depends_on:
   #     postgres:
