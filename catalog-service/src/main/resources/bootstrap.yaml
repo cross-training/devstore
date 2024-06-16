@@ -8,24 +8,24 @@ spring:
       uri: ${CONFIG_SERVICE_URI}
       username: ${CONFIG_SERVICE_USERNAME}
       password: ${CONFIG_SERVICE_PASSWORD}
-      enabled: true
+      enabled: true  
+  datasource:
+    platform: postgres
+    driverClassName: org.postgresql.Driver
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    schema: ${DB_SCHEMA}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        default_schema: catalog
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 #   zipkin:
-#     baseUrl: ${TRACE_SERVICE_URI}   
-#   datasource:
-#     platform: postgres
-#     driverClassName: org.postgresql.Driver
-#     url: ${DB_URL}
-#     username: ${DB_USER}
-#     password: ${DB_PASSWORD}
-#     schema: ${DB_SCHEMA}
-#   jpa:
-#     hibernate:
-#       ddl-auto: update
-#     show-sql: true
-#     properties:
-#       hibernate:
-#         default_schema: catalog
-#         dialect: org.hibernate.dialect.PostgreSQLDialect
+#     baseUrl: ${TRACE_SERVICE_URI} 
 # eureka:
 #   client:
 #     serviceUrl:
