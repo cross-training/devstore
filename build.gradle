@@ -102,7 +102,7 @@ subprojects {
         implementation 'io.zipkin.reporter2:zipkin-reporter-brave'
         implementation 'io.projectreactor:reactor-core:3.6.5'
         implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	    implementation 'org.hibernate:hibernate-core:7.0.0.Alpha2'
+	    implementation 'org.hibernate:hibernate-core:7.0.0.Alpha3'
         annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
         compileOnly 'org.projectlombok:lombok'
         runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
