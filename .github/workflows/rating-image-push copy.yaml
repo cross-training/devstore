@@ -3,7 +3,7 @@ name: rating service image push
 on:
   push:
     branches:
-      - develops
+      - develop
     paths:
       - 'rating-service/**'
 
