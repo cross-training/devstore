@@ -4,6 +4,6 @@ spring:
   application:
     name: catalog-service
   profiles:
-    active: ${SPRING_PROFILES_ACTIVE}
+    active: ${PROFILE:local}
   config:
     import: optional:configserver:${CONFIG_SERVICE_URI:http://localhost:8888}
