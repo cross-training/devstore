@@ -106,39 +106,37 @@ services:
     networks:
       - backend
 
-  # catalog:    
-  #   image: crosstraining/devstore-catalog:1.1.33
-  #   container_name: catalog
-  #   restart: always
-  #   depends_on:
-  #     postgres:
-  #       condition: service_healthy
-  #     config:
-  #       condition: service_healthy
-  #     discovery:
-  #       condition: service_healthy
-  #   environment:
-  #     PORT: 8080
-  #     SPRING_PROFILES_ACTIVE: docker
-  #     CONFIG_SERVICE_URI: http://config:8888
-  #     CONFIG_SERVICE_USERNAME: ${CONFIG_SERVICE_USERNAME}
-  #     CONFIG_SERVICE_PASSWORD: ${CONFIG_SERVICE_PASSWORD}
-  #     DISCOVERY_SERVICE_URI: http://discovery:8761/eureka/
-  #     TRACE_SERVICE_URI: http://tracing:9411 
-  #     DB_URL: jdbc:postgresql://postgres:5432/devstore
-  #     DB_USER: catalog
-  #     DB_PASSWORD: catalog
-  #     DB_SCHEMA: catalog  
-  #   ports:
-  #    - 9001:8080  
-  #   networks:
-  #     - backend          
-  #   healthcheck:
-  #     test: curl --fail http://localhost:8080/actuator/health || exit 1
-  #     interval: 10s
-  #     retries: 3
-  #     start_period: 30s
-  #     timeout: 5s
+  catalog:    
+    image: crosstraining/devstore-catalog:1.1.35
+    container_name: catalog
+    restart: always
+    depends_on:
+      postgres:
+        condition: service_healthy
+      config:
+        condition: service_healthy
+      discovery:
+        condition: service_healthy
+    environment:
+      PORT: 8080
+      PROFILE: docker
+      CONFIG_SERVICE_URI: http://devstore:secr3t@config:8888s
+      DISCOVERY_SERVICE_URI: http://discovery:8761/eureka/
+      TRACE_SERVICE_URI: http://tracing:9411 
+      DB_URL: jdbc:postgresql://postgres:5432/devstore
+      DB_USER: catalog
+      DB_PASSWORD: catalog
+      DB_SCHEMA: catalog  
+    ports:
+     - 9001:8080  
+    networks:
+      - backend          
+    healthcheck:
+      test: curl --fail http://localhost:8080/actuator/health || exit 1
+      interval: 10s
+      retries: 3
+      start_period: 30s
+      timeout: 5s
 
   # rating:
   #   image: crosstraining/devstore-rating:1.1.28
