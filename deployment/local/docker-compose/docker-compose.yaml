@@ -107,7 +107,7 @@ services:
       - backend
 
   catalog:    
-    image: crosstraining/devstore-catalog:1.1.36
+    image: crosstraining/devstore-catalog:1.1.37
     container_name: catalog
     restart: always
     depends_on:
@@ -118,9 +118,9 @@ services:
       discovery:
         condition: service_healthy
     environment:
-      PORT: 8080
-      SPRING_PROFILES_ACTIVE: docker
-      CONFIG_SERVICE_URI: http://devstore:secr3t@config:8888
+      - PORT=8080
+      - SPRING_PROFILES_ACTIVE=docker
+      - CONFIG_SERVICE_URI=http://devstore:secr3t@config:8888
       # DISCOVERY_SERVICE_URI: http://discovery:8761/eureka/
       # TRACE_SERVICE_URI: http://tracing:9411 
       # DB_URL: jdbc:postgresql://postgres:5432/devstore
