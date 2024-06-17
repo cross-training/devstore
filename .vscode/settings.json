@@ -50,6 +50,7 @@
         "springframework",
         "twilio",
         "usename",
+        "uuid",
         "xaxis",
         "yaxes",
         "zipkin",
