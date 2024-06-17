@@ -5,6 +5,12 @@ spring:
     name: catalog-service
   config:
     import: optional:configserver:${CONFIG_SERVICE_URI}
+  cloud:
+    config:
+      uri: ${CONFIG_SERVICE_URI}
+      username: ${CONFIG_SERVICE_USERNAME}
+      password: ${CONFIG_SERVICE_PASSWORD}
+      enabled: true
 ---
 spring:
   config:
