@@ -37,8 +37,8 @@ python3 infra.py up --services catalog
   - [rating config](http://localhost:8888/rating-service/docker)
 - [discovery service](http://localhost:8761)
 - [api gateway](http://localhost:8080)
-  - [health](http://localhost:8080/health)
-  - [metrics](http://localhost:8080/metrics)
+  - [health](http://localhost:8080/actuator/health)
+  - [metrics](http://localhost:8080/actuator/prometheus)
   - [catalog](http://localhost:8080/catalog/info)
   - [rating](http://localhost:8080/rating/info)
 - catalog service:

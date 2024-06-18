@@ -85,7 +85,7 @@ def up_postgres():
     """Start the Docker Compose infrastructure."""   
     # 1. Start Database
     print("Starting Database...")
-    run_command('docker-compose -p devstore up -d postgres')
+    run_command('docker-compose up -d postgres')
     # Wait a bit to ensure containers are ready
     time.sleep(10)
 
@@ -111,21 +111,21 @@ def up_services(services:list[str]):
     """Start the Docker Compose infrastructure services."""
     if not services or len(services) == 0:
         print("Starting Infrastructures Services...")
-        run_command('docker-compose -p devstore up -d')
+        run_command('docker-compose up -d')
     else :
         services_str = ' '.join(services)
         print(f"Starting Infrastructures ${services_str} Services...")
-        run_command('docker-compose -p devstore up -d ' + services_str)
+        run_command('docker-compose up -d ' + services_str)
 
 def down_services(services:list[str]):
     """Stop the Docker Compose."""
     if not services or len(services) == 0:
         print("Stop services...")
-        run_command('docker-compose -p devstore down')
+        run_command('docker-compose down')
     else :
         services_str = ' '.join(services)
         print(f"Stop services ${services_str}...")
-        run_command('docker-compose -p devstore down ' + services_str) 
+        run_command('docker-compose down ' + services_str)
 
 def main(action:str, services: list[str]):
     """Main function to execute the script."""

@@ -1,6 +1,8 @@
 version: "3"
-networks:
-  backend:
+
+x-project:
+  name: devstore
+
 services:
 
   postgres:
@@ -11,10 +13,7 @@ services:
       - POSTGRES_DB=${DB_DATABASE}    
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
-    ports:
-      - 5432:5432  
-    networks:
-      - backend
+    network_mode: host
     healthcheck:
       test: [ "CMD", "pg_isready", "-U", "${DB_USER}" ]
       interval: 3s
@@ -26,71 +25,60 @@ services:
     container_name: tracing
     environment:
     - JAVA_OPTS=-XX:+UnlockExperimentalVMOptions -Djava.security.egd=file:/dev/./urandom
-    ports:
-     - 9411:9411
-    networks:
-      - backend
+    network_mode: host
 
   config:
-    image: crosstraining/config-server:0.0.26   
+    image: crosstraining/config-server:0.0.33  
     container_name: config
     restart: always
     environment:
-      PORT: 8080
-      CONFIG_SERVICE_USERNAME: ${CONFIG_SERVICE_USERNAME}
-      CONFIG_SERVICE_PASSWORD: ${CONFIG_SERVICE_PASSWORD}
-      CONFIG_SERVICE_REPO_URI: https://github.com/cross-training/devstore-config.git
-      CONFIG_SERVICE_REPO_LABEL: main
-      CONFIG_SERVICE_REPO_PATHS: services
-      CONFIG_SERVICE_REPO_USERNAME: ''
-      CONFIG_SERVICE_REPO_PASSWORD: ''
-      TRACE_SERVICE_URI: http://tracing:9411      
+      - PORT=8888
+      - CONFIG_SERVICE_REPO_URI=https://github.com/cross-training/devstore-config.git
+      - CONFIG_SERVICE_REPO_LABEL=main
+      - CONFIG_SERVICE_REPO_PATHS=services
+      - CONFIG_SERVICE_REPO_USERNAME=''
+      - CONFIG_SERVICE_REPO_PASSWORD=''
+      - CONFIG_SERVICE_USERNAME=devstore
+      - CONFIG_SERVICE_PASSWORD=secr3t
+      - TRACE_SERVICE_URI=http://localhost:9411      
     healthcheck:
-      test: ["CMD", "curl", "-I", "http://localhost:8080/actuator/health"]
+      test: ["CMD", "curl", "-I", "http://localhost:8888/actuator/health"]
       interval: 5s
       timeout: 5s
       retries: 10
     depends_on:
       - tracing
-    ports:
-     - 8888:8080
-    networks:
-      - backend
+    network_mode: host
   
   discovery:
-    image: crosstraining/discovery-service:0.0.26
+    image: crosstraining/discovery-service:0.0.33
     container_name: discovery
     environment:
-      PORT: 8080
-      SPRING_PROFILES_ACTIVE: docker
-      CONFIG_SERVICE_URI: http://config:8888
-      CONFIG_SERVICE_USERNAME: ${CONFIG_SERVICE_USERNAME}
-      CONFIG_SERVICE_PASSWORD: ${CONFIG_SERVICE_PASSWORD}
-      TRACE_SERVICE_URI: http://tracing:9411   
+      - PORT=8761
+      - CONFIG_SERVICE_URI=http://localhost:8888
+      - CONFIG_SERVICE_USERNAME=devstore 
+      - CONFIG_SERVICE_PASSWORD=secr3t
+      - TRACE_SERVICE_URI=http://localhost:9411   
     healthcheck:
-      test: ["CMD", "curl", "-I", "http://localhost:8080/actuator/health"]
+      test: ["CMD", "curl", "-I", "http://localhost:8761/actuator/health"]
       interval: 5s
       timeout: 3s
       retries: 10
     depends_on:
       config:
         condition: service_healthy
-    ports:
-     - 8761:8080
-    networks:
-      - backend
+    network_mode: host
 
   gateway:
-    image: crosstraining/api-gateway:0.0.27
+    image: crosstraining/api-gateway:0.0.33
     container_name: gateway
     environment:
-      PORT: 8080
-      SPRING_PROFILES_ACTIVE: docker
-      CONFIG_SERVICE_URI: http://config:8888
-      CONFIG_SERVICE_USERNAME: ${CONFIG_SERVICE_USERNAME}
-      CONFIG_SERVICE_PASSWORD: ${CONFIG_SERVICE_PASSWORD}
-      DISCOVERY_SERVICE_URI: http://discovery:8761/eureka/
-      TRACE_SERVICE_URI: http://tracings:9411       
+      - PORT=8080
+      - CONFIG_SERVICE_URI=http://localhost:8888
+      - CONFIG_SERVICE_USERNAME=devstore
+      - CONFIG_SERVICE_PASSWORD=secr3t
+      - DISCOVERY_SERVICE_URI=http://localhost:8761/eureka/
+      - TRACE_SERVICE_URI=http://localhost:9411       
     healthcheck:
       test: ["CMD", "curl", "-I", "http://localhost:8080/actuator/health"]
       interval: 5s
@@ -101,13 +89,10 @@ services:
         condition: service_healthy
       discovery:
         condition: service_healthy 
-    ports:
-     - 8080:8080
-    networks:
-      - backend
+    network_mode: host
 
   catalog:    
-    image: crosstraining/devstore-catalog:1.1.38
+    image: crosstraining/devstore-catalog:1.1.39
     container_name: catalog
     restart: always
     depends_on:
@@ -118,85 +103,69 @@ services:
       discovery:
         condition: service_healthy
     environment:
-      - PORT=8080
-      - SPRING_PROFILES_ACTIVE=docker
-      - CONFIG_SERVICE_URI=http://devstore:secr3t@config:8888
-      # DISCOVERY_SERVICE_URI: http://discovery:8761/eureka/
-      # TRACE_SERVICE_URI: http://tracing:9411 
-      # DB_URL: jdbc:postgresql://postgres:5432/devstore
-      # DB_USER: catalog
-      # DB_PASSWORD: catalog
-      # DB_SCHEMA: catalog  
-    ports:
-     - 9001:8080  
-    networks:
-      - backend          
+      - PORT=9001
+      - CONFIG_SERVICE_URI=http://localhost:8888
+      - CONFIG_SERVICE_USERNAME=devstore
+      - CONFIG_SERVICE_PASSWORD=secr3t
+      - DISCOVERY_SERVICE_URI=http://localhost:8761/eureka/
+      - TRACE_SERVICE_URI=http://localhost:9411 
+      - DB_URL=jdbc:postgresql://localhost:5432/devstore
+      - DB_USER=catalog
+      - DB_PASSWORD=catalog
+      - DB_SCHEMA=catalog  
     healthcheck:
-      test: curl --fail http://localhost:8080/actuator/health || exit 1
+      test: curl --fail http://localhost:9001/actuator/health || exit 1
       interval: 10s
       retries: 3
       start_period: 30s
       timeout: 5s
+    network_mode: host  
 
-  # rating:
-  #   image: crosstraining/devstore-rating:1.1.28
-  #   restart: always
-  #   depends_on:
-  #     postgres:
-  #       condition: service_healthy
-  #     config:
-  #       condition: service_healthy
-  #     discovery:
-  #       condition: service_healthy 
-  #   environment:
-  #     PORT: 8080
-  #     SPRING_PROFILES_ACTIVE: docker
-  #     CONFIG_SERVICE_URI: http://config:8888
-  #     CONFIG_SERVICE_USERNAME: ${CONFIG_SERVICE_USERNAME}
-  #     CONFIG_SERVICE_PASSWORD: ${CONFIG_SERVICE_PASSWORD}
-  #     DISCOVERY_SERVICE_URI: http://discovery:8761/eureka/
-  #     TRACE_SERVICE_URI: http://tracing:9411 
-  #     DB_URL: jdbc:postgresql://postgres:5432/devstore
-  #     DB_USER: rating
-  #     DB_PASSWORD: rating
-  #     DB_SCHEMA: rating
-  #   ports:
-  #    - 9002:8080  
-  #   networks:
-  #     - backend          
-  #   healthcheck:
-  #     test: curl --fail http://localhost:8080/actuator/health || exit 1
-  #     interval: 10s
-  #     retries: 3
-  #     start_period: 30s
-  #     timeout: 5s
+  rating:
+    image: crosstraining/devstore-rating:1.1.28
+    restart: always
+    depends_on:
+      postgres:
+        condition: service_healthy
+      config:
+        condition: service_healthy
+      discovery:
+        condition: service_healthy 
+    environment:
+      - PORT=9002
+      - CONFIG_SERVICE_URI=http://localhost:8888
+      - CONFIG_SERVICE_USERNAME=devstore
+      - CONFIG_SERVICE_PASSWORD=secr3t
+      - DISCOVERY_SERVICE_URI=http://localhost:8761/eureka/
+      - TRACE_SERVICE_URI=http://localhost:9411 
+      - DB_URL=jdbc:postgresql://postgres:5432/devstore
+      - DB_USER=rating
+      - DB_PASSWORD=rating
+      - DB_SCHEMA=rating
+    healthcheck:
+      test: curl --fail http://localhost:9002/actuator/health || exit 1
+      interval: 10s
+      retries: 3
+      start_period: 30s
+      timeout: 5s
+    network_mode: host  
   
-  # prometheus:
-  #   image: prom/prometheus:v2.20.1
-  #   container_name: prometheus
-  #   volumes:
-  #     - ./prometheus:/etc/prometheus      
-  #   ports:
-  #     - 9090:9090
-  #   expose:
-  #     - 9090
-  #   networks:
-  #     - backend
-  
-  # grafana:
-  #   depends_on:
-  #     - prometheus
-  #   image: grafana/grafana:7.1.5
-  #   container_name: grafana    
-  #   environment:
-  #     - GF_AUTH_DISABLE_LOGIN_FORM=true
-  #     - GF_AUTH_ANONYMOUS_ENABLED=true
-  #     - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
-  #   ports:
-  #     - 3000:3000
-  #   expose:
-  #     - 3000
-  #   networks:
-  #     - backend
-  #   volumes:      
-  #     - ./grafana/provisioning:/etc/grafana/provisioning  
+  prometheus:
+    image: prom/prometheus:v2.20.1
+    container_name: prometheus
+    volumes:
+      - ./prometheus:/etc/prometheus      
+    network_mode: host
+
+  grafana:
+    depends_on:
+      - prometheus
+    image: grafana/grafana:7.1.5
+    container_name: grafana    
+    environment:
+      - GF_AUTH_DISABLE_LOGIN_FORM=true
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+    network_mode: host
+    volumes:      
+      - ./grafana/provisioning:/etc/grafana/provisioning  
