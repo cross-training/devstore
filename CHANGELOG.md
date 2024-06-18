@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/cross-training/devstore/compare/v1.1.39...v1.2.0) (2024-06-18)
+
+
+### Features
+
+* refactorize docker compose deployment ([ff5b59c](https://github.com/cross-training/devstore/commit/ff5b59ce5d10d7ce89bddc6fd6c6f0e7e207e97a)), closes [#2](https://github.com/cross-training/devstore/issues/2)
+
 ### [1.1.39](https://github.com/cross-training/devstore/compare/v1.1.38...v1.1.39) (2024-06-17)
 
 ### [1.1.38](https://github.com/cross-training/devstore/compare/v1.1.37...v1.1.38) (2024-06-17)
