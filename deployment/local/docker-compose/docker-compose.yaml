@@ -122,7 +122,7 @@ services:
     network_mode: host  
 
   rating:
-    image: crosstraining/devstore-rating:1.1.28
+    image: crosstraining/devstore-rating:1.1.39
     restart: always
     depends_on:
       postgres:
@@ -138,7 +138,7 @@ services:
       - CONFIG_SERVICE_PASSWORD=secr3t
       - DISCOVERY_SERVICE_URI=http://localhost:8761/eureka/
       - TRACE_SERVICE_URI=http://localhost:9411 
-      - DB_URL=jdbc:postgresql://postgres:5432/devstore
+      - DB_URL=jdbc:postgresql://localhost:5432/devstore
       - DB_USER=rating
       - DB_PASSWORD=rating
       - DB_SCHEMA=rating
